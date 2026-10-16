@@ -1,0 +1,302 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090b14">
+<meta name="description" content="GameVerse — discover PC games, release years, genres, game guides, performance tips and gaming news.">
+<meta name="keywords" content="PC games, game guides, gaming news, low end PC games, FPS optimization, game release dates">
+<meta property="og:title" content="GameVerse — Your Gaming Universe">
+<meta property="og:description" content="Discover games, explore genres and improve your gaming experience.">
+<title>GameVerse — Your Gaming Universe</title>
+<style>
+:root{--bg:#090b14;--panel:#111525;--panel2:#171d31;--text:#f4f6ff;--muted:#9ca6c4;--purple:#8b5cf6;--cyan:#22d3ee;--line:#272e46}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 80% 0%,#211448 0,transparent 35%),var(--bg);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif}a{color:inherit;text-decoration:none}button,input,select{font:inherit}button{cursor:pointer}.wrap{width:min(1240px,92%);margin:auto}.topbar{position:sticky;top:0;z-index:10;background:#090b14eF;border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}.nav{height:72px;display:flex;align-items:center;gap:24px}.logo{font-weight:950;font-size:23px;letter-spacing:-1px;white-space:nowrap}.logo span{color:var(--cyan)}.navlinks{display:flex;gap:20px;color:var(--muted);font-size:14px}.navlinks a:hover{color:white}.navright{margin-left:auto;color:var(--muted);font-size:13px}.hero{padding:70px 0 46px;display:grid;grid-template-columns:1.25fr .75fr;gap:32px;align-items:center}.eyebrow{color:var(--cyan);font-weight:800;letter-spacing:2px;text-transform:uppercase;font-size:12px}.hero h1{font-size:clamp(40px,6vw,72px);line-height:.99;letter-spacing:-3px;margin:16px 0}.gradient{background:linear-gradient(100deg,#fff,#a78bfa 50%,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{color:var(--muted);line-height:1.8;max-width:620px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.btn{border:1px solid var(--line);background:var(--panel2);color:white;padding:12px 18px;border-radius:12px;font-weight:750}.btn.primary{background:linear-gradient(110deg,#7c3aed,#2563eb);border:0}.btn:hover{transform:translateY(-1px);filter:brightness(1.12)}.heroart{border:1px solid #453276;border-radius:24px;padding:28px;background:linear-gradient(145deg,#201443,#11182d 70%);min-height:300px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 20px 80px #0005}.heroart .big{font-size:66px}.heroart h2{font-size:30px;margin:8px 0}.heroart p{margin:0}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px}.stat{background:#090b1470;border:1px solid #ffffff12;border-radius:12px;padding:13px}.stat b{display:block;font-size:22px}.stat small{color:var(--muted)}.sectionhead{display:flex;align-items:end;justify-content:space-between;gap:18px;margin:26px 0 20px}.sectionhead h2{font-size:30px;letter-spacing:-1px;margin:0}.sectionhead p{color:var(--muted);margin:7px 0 0}.tools{display:grid;grid-template-columns:1fr 180px 180px;gap:10px;margin:22px 0}.field{width:100%;background:var(--panel);border:1px solid var(--line);border-radius:12px;color:white;padding:13px 14px;outline:none}.field:focus{border-color:var(--purple)}.chips{display:flex;gap:8px;overflow-x:auto;padding:2px 0 14px}.chip{flex-shrink:0;border:1px solid var(--line);background:var(--panel);color:var(--muted);padding:9px 13px;border-radius:999px;font-size:13px}.chip.active,.chip:hover{background:#34225b;color:white;border-color:#7851cb}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px}.game{background:linear-gradient(180deg,#151a2a,#0f1220);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:.2s;min-width:0}.game:hover{transform:translateY(-4px);border-color:#7155c5;box-shadow:0 15px 35px #0004}.cover{width:100%;aspect-ratio:460/215;object-fit:cover;display:block;background:linear-gradient(130deg,#2b2151,#122c40)}.gamebody{padding:14px}.tags{display:flex;justify-content:space-between;gap:7px;align-items:center;color:var(--muted);font-size:11px}.tag{background:#26213f;color:#c4b5fd;padding:5px 8px;border-radius:7px}.game h3{font-size:16px;margin:12px 0 7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.game p{font-size:12px;color:var(--muted);line-height:1.6;min-height:38px;margin:0 0 12px}.gamebottom{display:flex;align-items:center;justify-content:space-between;gap:8px}.year{font-size:12px;color:#cbd5e1}.details{font-size:12px;color:var(--cyan);font-weight:800;background:none;border:0;padding:5px}.details:hover{color:white}.loadmore{display:block;margin:26px auto 45px}.empty{padding:50px;text-align:center;color:var(--muted);grid-column:1/-1}.features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0 60px}.feature{padding:22px;border:1px solid var(--line);border-radius:16px;background:var(--panel)}.feature .ico{font-size:27px}.feature h3{margin:12px 0 8px}.feature p{color:var(--muted);font-size:14px;line-height:1.7}.articlegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:60px}.article{border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,#18162b,#101525);padding:22px}.article small{color:var(--cyan)}.article h3{margin:10px 0}.article p{font-size:14px;line-height:1.7;color:var(--muted)}footer{border-top:1px solid var(--line);padding:30px 0 45px;color:var(--muted);font-size:13px;line-height:1.8}.footrow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.modal{position:fixed;inset:0;background:#02030bdc;z-index:30;display:none;align-items:center;justify-content:center;padding:18px}.modal.open{display:flex}.modalbox{width:min(720px,100%);max-height:90vh;overflow:auto;background:#111525;border:1px solid #3a4260;border-radius:20px}.modalimg{width:100%;max-height:260px;object-fit:cover;background:#201443}.modalcontent{padding:24px}.modalcontent p,.modalcontent li{color:#b6bfd7;line-height:1.75}.modalcontent h2{margin-top:0}.modalhead{display:flex;justify-content:space-between;gap:10px}.close{background:#242b41;color:white;border:0;border-radius:9px;padding:8px 12px;height:38px}.notice{color:var(--muted);font-size:12px;margin:18px 0}.fav{background:none;border:0;color:#f0abfc;font-size:17px;padding:4px}.footerlinks{display:flex;gap:15px;flex-wrap:wrap}.footerlinks a:hover{color:white}
+@media(max-width:950px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.hero{grid-template-columns:1fr}.heroart{min-height:230px}.tools{grid-template-columns:1fr 1fr}.tools input{grid-column:1/-1}.navlinks{gap:12px}}
+@media(max-width:650px){.nav{height:auto;min-height:64px;flex-wrap:wrap;padding:12px 0;gap:12px}.navlinks{order:3;width:100%;overflow:auto;padding:4px 0}.navright{font-size:11px}.hero{padding-top:42px}.hero h1{letter-spacing:-2px}.heroart .big{font-size:48px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.gamebody{padding:10px}.game h3{font-size:14px}.game p{font-size:11px}.sectionhead h2{font-size:24px}.features,.articlegrid{grid-template-columns:1fr}.tools{grid-template-columns:1fr}.tools input{grid-column:auto}.stats{gap:6px}.stat{padding:9px}.stat b{font-size:18px}}
+</style>
+</head>
+<body>
+<header class="topbar">
+ <div class="wrap nav">
+  <a class="logo" href="#">GAME<span>VERSE</span></a>
+  <nav class="navlinks"><a href="#games">Games</a><a href="#guides">Guides</a><a href="#performance">PC Performance</a><a href="#about">About</a></nav>
+  <div class="navright">YOUR NEXT GAME STARTS HERE</div>
+ </div>
+</header>
+<main>
+<section class="wrap hero">
+ <div>
+  <div class="eyebrow">Explore • Play • Level Up</div>
+  <h1>ENTER YOUR<br><span class="gradient">GAMING UNIVERSE.</span></h1>
+  <p>Discover legendary adventures, competitive shooters, open worlds and hidden gems. Explore game details, release years, genres and practical PC gaming guides.</p>
+  <div class="actions"><a class="btn primary" href="#games">Explore 100 Games ↗</a><a class="btn" href="#guides">Read Gaming Guides</a></div>
+  <div class="stats"><div class="stat"><b>100</b><small>Games to explore</small></div><div class="stat"><b>All genres</b><small>Find your next game</small></div><div class="stat"><b>PC focused</b><small>Guides & performance</small></div></div>
+ </div>
+ <div class="heroart"><div><div class="big">🎮</div><div class="eyebrow">The GameVerse collection</div><h2>Find your next obsession.</h2><p>From indie gems to massive open worlds.</p></div><div class="tags"><span class="tag">PC GAMING</span><span class="tag">GUIDES</span><span class="tag">DISCOVERY</span></div></div>
+</section>
+
+<section class="wrap" id="games">
+ <div class="sectionhead"><div><div class="eyebrow">The collection</div><h2>Explore Games</h2><p>Search by title, genre or release year.</p></div><div id="count" class="year">100 games</div></div>
+ <div class="tools">
+  <input id="search" class="field" type="search" placeholder="🔎 Search games..." aria-label="Search games">
+  <select id="genre" class="field" aria-label="Filter by genre"><option value="All">All genres</option></select>
+  <select id="sort" class="field" aria-label="Sort games"><option value="featured">Featured order</option><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="az">Name A–Z</option></select>
+ </div>
+ <div class="chips" id="chips"></div>
+ <div id="gamegrid" class="grid" aria-live="polite"></div>
+ <button id="loadmore" class="btn loadmore">Load more games ↓</button>
+ <p class="notice">Release years are shown as a quick reference. Cover art is loaded from Steam's public image CDN. Availability, edition, platform and system requirements can differ by release.</p>
+</section>
+
+<section class="wrap" id="guides">
+ <div class="sectionhead"><div><div class="eyebrow">Level up</div><h2>Gaming Guides</h2><p>Start with these practical topics.</p></div></div>
+ <div class="articlegrid">
+  <article class="article"><small>PERFORMANCE / 01</small><h3>Improve FPS on a low-end PC</h3><p>Start with in-game resolution, graphics presets, background apps and updated drivers. Change one setting at a time and compare performance.</p></article>
+  <article class="article"><small>PC BUILDING / 02</small><h3>Understand system requirements</h3><p>Check the official minimum and recommended specs before installing a game. Pay attention to RAM, graphics memory, storage and operating system.</p></article>
+  <article class="article"><small>DISCOVERY / 03</small><h3>Find games that fit your PC</h3><p>Look for older releases, indie games and titles with scalable graphics. Read recent player reports and check performance on hardware similar to yours.</p></article>
+ </div>
+</section>
+
+<section class="wrap" id="performance">
+ <div class="sectionhead"><div><div class="eyebrow">Play smarter</div><h2>PC Gaming Essentials</h2><p>Useful starting points for a smoother experience.</p></div></div>
+ <div class="features">
+  <article class="feature"><div class="ico">⚡</div><h3>FPS & smoothness</h3><p>Use a suitable resolution, cap unstable frame rates if needed, close unnecessary background apps and monitor temperatures.</p></article>
+  <article class="feature"><div class="ico">🖥️</div><h3>Know your hardware</h3><p>Compare your CPU, GPU and RAM with the official requirements. An SSD can improve loading but does not replace a capable GPU.</p></article>
+  <article class="feature"><div class="ico">🛡️</div><h3>Play safely</h3><p>Download games and updates from official stores. Avoid suspicious installers, cheats and files claiming unrealistic performance boosts.</p></article>
+ </div>
+</section>
+
+<section class="wrap" id="about">
+ <div class="sectionhead"><div><div class="eyebrow">Our mission</div><h2>Welcome to GameVerse</h2></div></div>
+ <div class="feature"><h3>A universe for every player.</h3><p>GameVerse is a gaming discovery project built to help players explore PC games, genres and helpful gaming topics. We aim to add carefully checked game information, original reviews, walkthroughs and performance guides. GameVerse is an independent fan project and is not affiliated with the game publishers listed here.</p></div>
+</section>
+</main>
+<footer><div class="wrap footrow"><div><a class="logo" href="#">GAME<span>VERSE</span></a><p>Discover. Play. Level up.</p><p>© <span id="yearnow"></span> GameVerse. An independent gaming discovery project.</p></div><div class="footerlinks"><a href="#games">Games</a><a href="#guides">Guides</a><a href="#performance">PC Performance</a><a href="#about">About</a></div></div></footer>
+
+<div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+ <div class="modalbox"><img id="modalimg" class="modalimg" alt=""><div class="modalcontent"><div class="modalhead"><div><div id="modaltag" class="eyebrow"></div><h2 id="modalTitle"></h2></div><button class="close" id="close" aria-label="Close details">✕</button></div><p id="modaldesc"></p><ul id="modalinfo"></ul><p class="notice">Before buying or installing, check the official store page for the exact edition, full release date, platform availability and minimum/recommended PC requirements. GameVerse does not claim these details have been independently verified.</p><button id="favbutton" class="btn">☆ Add to saved games</button></div></div>
+</div>
+
+<script>
+const games = [
+[570,"Dota 2",2013,"MOBA","A competitive team strategy game built around heroes, teamwork and tactical decisions."],
+[730,"Counter-Strike 2",2023,"Shooter","A tactical competitive shooter where precision, utility and teamwork matter."],
+[578080,"PUBG: Battlegrounds",2017,"Battle Royale","A battle royale survival shooter focused on positioning, looting and squad tactics."],
+[271590,"Grand Theft Auto V",2015,"Open World","Explore Los Santos in a crime adventure filled with missions, vehicles and an expansive open world."],
+[1174180,"Red Dead Redemption 2",2019,"Open World","A detailed western adventure with exploration, storytelling and a vast frontier."],
+[1091500,"Cyberpunk 2077",2020,"RPG","Explore Night City in a futuristic role-playing adventure full of choices and action."],
+[292030,"The Witcher 3: Wild Hunt",2015,"RPG","A fantasy role-playing adventure with monster hunts, memorable characters and meaningful choices."],
+[1245620,"Elden Ring",2022,"RPG","Explore a mysterious fantasy world and face challenging enemies in an action RPG."],
+[1086940,"Baldur's Gate 3",2023,"RPG","A story-rich fantasy RPG where choices, party building and turn-based battles shape the journey."],
+[990080,"Hogwarts Legacy",2023,"Adventure","Explore a magical world, learn spells and uncover secrets in a wizarding adventure."],
+[1716740,"Starfield",2023,"RPG","Travel through space, discover planets and build your own story among the stars."],
+[489830,"The Elder Scrolls V: Skyrim Special Edition",2016,"RPG","Explore a vast fantasy land filled with quests, dungeons, dragons and guilds."],
+[377160,"Fallout 4",2015,"RPG","Survive a post-apocalyptic wasteland with exploration, crafting and settlement building."],
+[782330,"DOOM Eternal",2020,"Shooter","A fast, intense shooter that rewards movement, resource management and aggressive combat."],
+[379720,"DOOM (2016)",2016,"Shooter","Fight demonic forces in a fast-paced first-person action campaign."],
+[1172470,"Apex Legends",2020,"Battle Royale","A squad-based hero battle royale with unique abilities and fast movement."],
+[252490,"Rust",2018,"Survival","Gather resources, build a base and survive against the environment and other players."],
+[346110,"ARK: Survival Evolved",2017,"Survival","Tame dinosaurs, gather resources and build a home in a dangerous prehistoric world."],
+[1623730,"Palworld",2024,"Survival","Explore a colorful open world, collect mysterious creatures and build your base."],
+[553850,"HELLDIVERS 2",2024,"Shooter","Team up for chaotic cooperative missions against dangerous alien enemies."],
+[1551360,"Forza Horizon 5",2021,"Racing","Race across a vibrant open-world version of Mexico with a huge car collection."],
+[1293830,"Forza Horizon 4",2021,"Racing","Explore a changing open-world Britain and compete in a wide variety of driving events."],
+[227300,"Euro Truck Simulator 2",2012,"Simulation","Drive trucks across Europe, deliver cargo and build your own transport business."],
+[270880,"American Truck Simulator",2016,"Simulation","Deliver cargo across scenic American highways and expand your trucking company."],
+[244210,"Assetto Corsa",2014,"Racing","A driving simulator known for detailed vehicle handling and track racing."],
+[1080110,"F1 2020",2020,"Racing","Race as a Formula racing driver and manage your career on iconic circuits."],
+[1174180,"Red Dead Redemption 2",2019,"Open World","A western open world with a cinematic story, exploration and side activities."],
+[359550,"Tom Clancy's Rainbow Six Siege",2015,"Shooter","A tactical team shooter focused on operators, strategy and destructible environments."],
+[440,"Team Fortress 2",2007,"Shooter","A class-based multiplayer shooter with distinctive characters and objective-based matches."],
+[440900,"Conan Exiles",2018,"Survival","Survive a harsh fantasy world through crafting, building and exploration."],
+[892970,"Valheim",2021,"Survival","Explore a Norse-inspired world, build settlements and battle mythical creatures."],
+[1966720,"Lethal Company",2023,"Horror","Work with friends to explore abandoned facilities and collect scrap while avoiding danger."],
+[1091500,"Cyberpunk 2077",2020,"RPG","Build a character and explore a neon-lit city in a futuristic role-playing game."],
+[1145360,"Hades",2020,"Indie","Fight through the underworld in a fast action roguelike with a rich story."],
+[1145350,"Hades II",2024,"Indie","A mythological action roguelike featuring fast combat and repeated runs."],
+[588650,"Dead Cells",2018,"Indie","A challenging action platformer with evolving weapons, levels and roguelike progression."],
+[250900,"The Binding of Isaac: Rebirth",2014,"Indie","Explore randomly generated rooms in a dark and unusual roguelike adventure."],
+[413150,"Stardew Valley",2016,"Simulation","Build a farm, meet townspeople, fish, explore caves and shape a peaceful rural life."],
+[105600,"Terraria",2011,"Sandbox","Dig, build, craft and battle through a huge two-dimensional sandbox world."],
+[4000,"Garry's Mod",2006,"Sandbox","Create, experiment and play community-made sandbox modes with friends."],
+[230410,"Warframe",2013,"Action","Play as a powerful space ninja in cooperative missions with deep customization."],
+[236390,"War Thunder",2013,"Simulation","Pilot aircraft and command ground or naval vehicles in large-scale battles."],
+[236850,"Europa Universalis IV",2013,"Strategy","Lead a nation through centuries of diplomacy, trade, warfare and expansion."],
+[281990,"Stellaris",2016,"Strategy","Explore a galaxy, develop an empire and encounter alien civilizations."],
+[394360,"Hearts of Iron IV",2016,"Strategy","Direct a nation through a grand-strategy simulation set around World War II."],
+[289070,"Sid Meier's Civilization VI",2016,"Strategy","Build a civilization from early history into a global power through strategy and diplomacy."],
+[255710,"Cities: Skylines",2015,"Simulation","Design and manage a growing city, balancing roads, services and public needs."],
+[949230,"Cities: Skylines II",2023,"Simulation","Build a modern city with detailed systems for traffic, housing and infrastructure."],
+[108600,"Project Zomboid",2013,"Survival","Try to survive a detailed zombie apocalypse with crafting and resource management."],
+[526870,"Satisfactory",2024,"Simulation","Build a sprawling first-person factory and automate production across an alien world."],
+[427520,"Factorio",2020,"Strategy","Design automated factories, optimize logistics and expand production."],
+[548430,"Deep Rock Galactic",2020,"Shooter","Team up as space dwarves to mine dangerous caves and fight alien creatures."],
+[1361210,"Warhammer 40,000: Darktide",2022,"Shooter","Join cooperative missions in a grim science-fiction universe."],
+[552500,"Warhammer: Vermintide 2",2018,"Action","Fight hordes of enemies in a cooperative fantasy action game."],
+[548570,"Sniper Elite 4",2017,"Shooter","Use stealth, long-range shooting and tactical planning in a wartime campaign."],
+[377160,"Fallout 4",2015,"RPG","Explore a post-apocalyptic world with quests, crafting and settlement building."],
+[22380,"Fallout: New Vegas",2010,"RPG","Make difficult choices across a desert wasteland in a story-driven RPG."],
+[72850,"The Elder Scrolls V: Skyrim",2011,"RPG","Explore a fantasy kingdom filled with ancient ruins, quests and dragons."],
+[220,"Half-Life 2",2004,"Shooter","Experience a landmark science-fiction shooter with physics-driven puzzles and combat."],
+[400,"Portal 2",2011,"Puzzle","Solve clever physics puzzles using a portal device in a witty science-fiction adventure."],
+[620,"Portal 2",2011,"Puzzle","Master portal-based puzzles and explore a memorable science-fiction test facility."],
+[550,"Left 4 Dead 2",2009,"Shooter","Fight through zombie hordes in a cooperative campaign with friends."],
+[70,"Half-Life",1998,"Shooter","A classic science-fiction shooter that blends action, exploration and puzzles."],
+[70,"Half-Life",1998,"Shooter","A classic science-fiction adventure set inside a research facility gone wrong."],
+[252950,"Rocket League",2015,"Sports","Play fast competitive matches that combine football-style goals and rocket-powered cars."],
+[359320,"Elite Dangerous",2015,"Simulation","Pilot a spaceship across a huge galaxy in a space flight simulation."],
+[281990,"Stellaris",2016,"Strategy","Explore, expand and manage an interstellar civilization."],
+[346110,"ARK: Survival Evolved",2017,"Survival","Gather, craft and tame creatures in a dangerous open world."],
+[438100,"VRChat",2017,"Social","Visit community-created worlds and socialize with players in virtual spaces."],
+[431960,"Wallpaper Engine",2018,"Utility","Customize your desktop with animated and interactive wallpapers."],
+[322330,"Don't Starve Together",2016,"Survival","Work together to gather resources, craft tools and survive a strange wilderness."],
+[304930,"Unturned",2017,"Survival","A blocky survival adventure featuring scavenging, crafting and multiplayer."],
+[221100,"DayZ",2018,"Survival","Survive in a hostile open world where supplies and trust are scarce."],
+[108600,"Project Zomboid",2013,"Survival","Plan carefully and manage supplies in a detailed zombie survival simulation."],
+[238960,"Path of Exile",2013,"RPG","Build a powerful character in a dark action RPG with extensive customization."],
+[2694490,"Path of Exile 2",2024,"RPG","Explore a dark fantasy action RPG with challenging combat and character builds."],
+[39210,"FINAL FANTASY XIV Online",2013,"RPG","Join a large online fantasy world filled with quests, dungeons and cooperative adventures."],
+[582660,"Black Desert",2017,"RPG","Explore a fantasy world with action combat, crafting and life skills."],
+[230410,"Warframe",2013,"Action","Customize equipment and complete fast cooperative science-fiction missions."],
+[1085660,"Destiny 2",2019,"Shooter","Explore a shared science-fiction world through missions, raids and competitive matches."],
+[251570,"7 Days to Die",2024,"Survival","Craft, build and defend your shelter in a zombie survival sandbox."],
+[3240220,"Grand Theft Auto V Enhanced",2025,"Open World","Return to Los Santos in an enhanced edition of the open-world crime adventure."],
+[1086940,"Baldur's Gate 3",2023,"RPG","A choice-driven fantasy RPG featuring turn-based battles and party adventures."],
+[108600,"Project Zomboid",2013,"Survival","Manage needs, supplies and shelter in a detailed survival sandbox."],
+[814380,"Sekiro: Shadows Die Twice",2019,"Action","Master precise sword combat in a challenging action adventure."],
+[814380,"Sekiro: Shadows Die Twice",2019,"Action","A demanding action game built around timing, stealth and swordplay."],
+[582010,"Monster Hunter: World",2018,"Action","Track and hunt enormous monsters, craft gear and take on challenging quests."],
+[2246340,"Monster Hunter Wilds",2025,"Action","Hunt powerful monsters in a dynamic wilderness with changing environments."],
+[374320,"Dark Souls III",2016,"RPG","Explore a dark fantasy world and overcome challenging enemies and bosses."],
+[236430,"Dark Souls II",2014,"RPG","A challenging fantasy adventure filled with exploration and difficult battles."],
+[211420,"Dark Souls: Prepare to Die Edition",2012,"RPG","Explore a dark fantasy world where careful combat and discovery are essential."],
+[367520,"Hollow Knight",2017,"Indie","Explore a beautifully hand-drawn underground kingdom in a challenging action platformer."],
+[105600,"Terraria",2011,"Sandbox","Build, explore and battle in a procedurally generated 2D world."],
+[504230,"Celeste",2018,"Indie","Climb a dangerous mountain in a precise platformer about perseverance."],
+[391540,"Undertale",2015,"Indie","Explore a quirky RPG where choices shape how you interact with its characters."],
+[391540,"Undertale",2015,"Indie","A character-driven role-playing adventure with unusual combat and meaningful choices."],
+[250900,"The Binding of Isaac: Rebirth",2014,"Indie","A replayable roguelike with randomly generated dungeons and many item combinations."],
+[1151640,"Horizon Zero Dawn Complete Edition",2020,"Adventure","Explore a post-apocalyptic world ruled by machines in a story-driven action adventure."],
+[1593500,"God of War",2022,"Action","Join Kratos and Atreus on a mythic journey through Norse realms."],
+[2322010,"God of War Ragnarök",2024,"Action","Continue a Norse mythological adventure with cinematic combat and exploration."],
+[1462040,"FINAL FANTASY VII REMAKE INTERGRADE",2022,"RPG","Revisit a classic fantasy story with modern visuals and real-time combat."],
+[1771300,"Kingdom Come: Deliverance II",2025,"RPG","Experience a grounded medieval role-playing adventure with choices and exploration."],
+[1088850,"Marvel's Guardians of the Galaxy",2021,"Adventure","Lead a colorful superhero team through a cinematic science-fiction adventure."],
+[1245620,"ELDEN RING",2022,"RPG","Explore a vast fantasy world and build your character for demanding battles."],
+[1966720,"Lethal Company",2023,"Horror","Coordinate with friends to explore dangerous locations and collect valuable scrap."],
+[239140,"Dying Light",2015,"Survival","Traverse a dangerous city with parkour, crafting and zombie combat."],
+[534380,"Dying Light 2 Stay Human",2022,"Survival","Explore a dangerous city using parkour, choices and survival combat."],
+[1091500,"Cyberpunk 2077",2020,"RPG","Create your own path through a futuristic city of mercenaries and corporations."],
+[1222670,"The Sims 4",2014,"Simulation","Create characters, design homes and tell your own life simulation stories."],
+[648800,"Raft",2022,"Survival","Survive at sea, expand a floating home and explore islands with friends."],
+[413150,"Stardew Valley",2016,"Simulation","Grow crops, raise animals, make friends and restore a countryside farm."],
+[108600,"Project Zomboid",2013,"Survival","A deep survival sandbox that rewards preparation and resource management."],
+[239140,"Dying Light",2015,"Survival","Use parkour and crafting to survive in an infected open-world city."],
+[289070,"Sid Meier's Civilization VI",2016,"Strategy","Lead a civilization across history with diplomacy, research and warfare."],
+[294100,"RimWorld",2018,"Simulation","Manage a colony of survivors and respond to unpredictable events."],
+[427520,"Factorio",2020,"Strategy","Automate production lines and engineer a growing industrial network."],
+[526870,"Satisfactory",2024,"Simulation","Build complex factories and explore an alien planet in first person."],
+[1086940,"Baldur's Gate 3",2023,"RPG","Shape an epic fantasy story through dialogue, choices and tactical combat."],
+[1326470,"Sons Of The Forest",2024,"Survival","Explore a mysterious forest, gather resources and build to survive."],
+[2054970,"Dragon's Dogma 2",2024,"RPG","Embark on a fantasy adventure with dynamic battles and companion characters."],
+[1151640,"Horizon Zero Dawn",2020,"Adventure","Uncover the secrets of a world inhabited by robotic creatures."],
+[1174180,"Red Dead Redemption 2",2019,"Open World","Explore the American frontier in an expansive story-driven western."],
+[1085660,"Destiny 2",2019,"Shooter","Fight across the solar system in a shared-world science-fiction shooter."],
+[1245620,"Elden Ring",2022,"RPG","Discover hidden places and overcome challenging bosses in a fantasy world."],
+[552500,"Vermintide 2",2018,"Action","Battle hordes of enemies with a team in a fantasy action game."],
+[552990,"World of Warships",2017,"Simulation","Command warships in tactical naval battles across the ocean."],
+[236390,"War Thunder",2013,"Simulation","Control military vehicles and aircraft in large-scale online battles."],
+[250820,"SteamVR",2016,"Utility","Access compatible virtual reality experiences through the Steam platform."],
+[648800,"Raft",2022,"Survival","Build a floating base and explore the ocean with friends."],
+[1817070,"Marvel's Spider-Man Remastered",2022,"Action","Swing through a detailed city and fight crime in a superhero adventure."],
+[1778820,"TEKKEN 8",2024,"Fighting","Compete in a modern fighting game featuring a large roster of characters."],
+[1971870,"Mortal Kombat 1",2023,"Fighting","Enter brutal competitive fights in a reimagined martial arts universe."],
+[976730,"Halo: The Master Chief Collection",2019,"Shooter","Play a collection of classic science-fiction shooter campaigns and multiplayer modes."],
+[1240440,"Halo Infinite",2021,"Shooter","Experience a science-fiction shooter campaign and competitive multiplayer."],
+[1938090,"Call of Duty",2022,"Shooter","Jump into a modern military shooter experience with action-packed matches."],
+[1962660,"Call of Duty: Warzone",2022,"Battle Royale","Compete in a large-scale battle royale with squad tactics and fast firefights."],
+[1938090,"Call of Duty: Modern Warfare II",2022,"Shooter","A modern military shooter featuring cinematic missions and multiplayer."],
+[1088850,"Marvel's Guardians of the Galaxy",2021,"Adventure","Lead a superhero squad through a story-driven cosmic adventure."],
+[1237970,"Titanfall 2",2016,"Shooter","Combine fast pilot movement and powerful mechs in a memorable sci-fi campaign."],
+[552520,"Far Cry 5",2018,"Open World","Explore a rural open world and take on a dangerous cult."],
+[2369390,"Far Cry 6",2021,"Open World","Fight a dictatorship across a tropical island in an open-world shooter."],
+[460930,"Ghost Recon Wildlands",2017,"Shooter","Coordinate tactical missions across a large open world."],
+[359550,"Rainbow Six Siege",2015,"Shooter","Use teamwork, gadgets and destructible environments in tactical rounds."],
+[1091500,"Cyberpunk 2077",2020,"RPG","Shape your character and story in a futuristic open-world RPG."],
+[990080,"Hogwarts Legacy",2023,"Adventure","Discover secrets and explore a magical school and its surroundings."],
+[1817190,"Marvel's Spider-Man: Miles Morales",2022,"Action","Swing across the city as Miles Morales in a superhero action adventure."],
+[2379780,"Balatro",2024,"Indie","Build powerful poker-inspired combinations in a clever roguelike deckbuilder."],
+[1966720,"Lethal Company",2023,"Horror","Scavenge abandoned facilities in a cooperative horror experience."],
+[242760,"The Forest",2018,"Survival","Explore a forest, build shelter and survive a mysterious island."],
+[252490,"Rust",2018,"Survival","Gather, craft and build while surviving against environmental and player threats."],
+[892970,"Valheim",2021,"Survival","Explore, build and battle in a Norse-inspired survival world."],
+[1623730,"Palworld",2024,"Survival","Collect creatures, build bases and explore an open world."],
+[553850,"HELLDIVERS 2",2024,"Shooter","Complete cooperative missions with tactical teamwork and chaotic action."],
+[105600,"Terraria",2011,"Sandbox","Craft gear, dig underground and explore a world full of secrets."],
+[4000,"Garry's Mod",2006,"Sandbox","Experiment with physics and community-created multiplayer modes."],
+[413150,"Stardew Valley",2016,"Simulation","Create a farm and build relationships in a relaxing countryside game."],
+[304930,"Unturned",2017,"Survival","Scavenge supplies and build shelters in a stylized survival world."],
+[221100,"DayZ",2018,"Survival","Try to survive in a persistent world with scarce supplies."],
+[252950,"Rocket League",2015,"Sports","Drive rocket-powered cars and score goals in competitive matches."],
+[105600,"Terraria",2011,"Sandbox","A 2D adventure sandbox built around crafting, exploration and combat."],
+[238960,"Path of Exile",2013,"RPG","Create a character and battle through a dark fantasy action RPG."],
+[730,"Counter-Strike 2",2023,"Shooter","Compete in tactical rounds where precision and teamwork are essential."],
+[570,"Dota 2",2013,"MOBA","Choose a hero and coordinate with teammates in strategic battles."]
+];
+
+const uniqueGames = [...new Map(games.map(g => [g[1],g])).values()].slice(0,100);
+const allGenres = ["All",...new Set(uniqueGames.map(g=>g[3]))];
+const genreEl=document.getElementById("genre");
+allGenres.slice(1).sort().forEach(g=>{const o=document.createElement("option");o.value=g;o.textContent=g;genreEl.appendChild(o)});
+const chips=document.getElementById("chips");
+allGenres.forEach((g,i)=>{const b=document.createElement("button");b.className="chip"+(i===0?" active":"");b.textContent=g;b.onclick=()=>{genreEl.value=g;document.querySelectorAll(".chip").forEach(x=>x.classList.remove("active"));b.classList.add("active");render(true)};chips.appendChild(b)});
+let visible=24, saved=JSON.parse(localStorage.getItem("gv-saved")||"[]");
+const grid=document.getElementById("gamegrid");
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function imageUrl(id){return `https://cdn.akamai.steamstatic.com/steam/apps/${id}/header.jpg`}
+function getFiltered(){
+ let list=[...uniqueGames],q=document.getElementById("search").value.toLowerCase().trim(),genre=genreEl.value,sort=document.getElementById("sort").value;
+ if(q)list=list.filter(g=>(g[1]+" "+g[3]+" "+g[4]+" "+g[2]).toLowerCase().includes(q));
+ if(genre!=="All")list=list.filter(g=>g[3]===genre);
+ if(sort==="newest")list.sort((a,b)=>b[2]-a[2]);if(sort==="oldest")list.sort((a,b)=>a[2]-b[2]);if(sort==="az")list.sort((a,b)=>a[1].localeCompare(b[1]));
+ return list;
+}
+function render(reset=false){
+ if(reset)visible=24;
+ const list=getFiltered();document.getElementById("count").textContent=`${list.length} games`;grid.innerHTML="";
+ list.slice(0,visible).forEach(g=>{
+  const card=document.createElement("article");card.className="game";
+  card.innerHTML=`<img class="cover" loading="lazy" src="${imageUrl(g[0])}" alt="${esc(g[1])} cover art" onerror="this.onerror=null;this.src='https://placehold.co/460x215/17152b/e7e8ff?text=GameVerse'"><div class="gamebody"><div class="tags"><span class="tag">${esc(g[3])}</span><span>${saved.includes(g[1])?"★ Saved":"🎮 PC"}</span></div><h3 title="${esc(g[1])}">${esc(g[1])}</h3><p>${esc(g[4])}</p><div class="gamebottom"><span class="year">Release: ${g[2]}</span><button class="details">Explore ↗</button></div></div>`;
+  card.querySelector(".details").onclick=()=>openGame(g);
+  card.querySelector(".cover").onclick=()=>openGame(g);
+  grid.appendChild(card);
+ });
+ document.getElementById("loadmore").style.display=list.length>visible?"block":"none";
+ if(!list.length)grid.innerHTML='<div class="empty">No games found. Try another search or genre.</div>';
+}
+function openGame(g){
+ document.getElementById("modalimg").src=imageUrl(g[0]);
+ document.getElementById("modalimg").alt=g[1];
+ document.getElementById("modalTitle").textContent=g[1];
+ document.getElementById("modaltag").textContent=g[3]+" • PC GAME";
+ document.getElementById("modaldesc").textContent=g[4];
+ document.getElementById("modalinfo").innerHTML=`<li><b>Release year:</b> ${g[2]}</li><li><b>Genre:</b> ${esc(g[3])}</li><li><b>Platform:</b> Check the official store page for current availability.</li><li><b>PC requirements:</b> Verify the minimum and recommended specs for the exact edition before installing.</li>`;
+ const fav=document.getElementById("favbutton");fav.textContent=saved.includes(g[1])?"★ Remove from saved games":"☆ Add to saved games";
+ fav.onclick=()=>{saved=saved.includes(g[1])?saved.filter(x=>x!==g[1]):[...saved,g[1]];localStorage.setItem("gv-saved",JSON.stringify(saved));fav.textContent=saved.includes(g[1])?"★ Remove from saved games":"☆ Add to saved games";render()};
+ document.getElementById("modal").classList.add("open");document.body.style.overflow="hidden";
+}
+function closeModal(){document.getElementById("modal").classList.remove("open");document.body.style.overflow=""}
+document.getElementById("close").onclick=closeModal;
+document.getElementById("modal").onclick=e=>{if(e.target.id==="modal")closeModal()};
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
+document.getElementById("search").addEventListener("input",()=>render(true));
+genreEl.addEventListener("change",()=>{document.querySelectorAll(".chip").forEach(b=>b.classList.toggle("active",b.textContent===genreEl.value));render(true)});
+document.getElementById("sort").addEventListener("change",()=>render(true));
+document.getElementById("loadmore").onclick=()=>{visible+=24;render()};
+document.getElementById("yearnow").textContent=new Date().getFullYear();
+render();
+</script>
+</body>
+</html>
