@@ -5,379 +5,208 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#e53935">
-<title>GameVerse — Игровой портал</title>
+<title>GameVerse — Игровой мир</title>
 <style>
-:root {
-  --red:#e53935;
-  --green:#168447;
-  --white:#fff;
-  --bg:#101114;
-  --panel:#1b1d22;
-  --muted:#a7a9b0;
-}
+:root{--red:#e53935;--green:#168447;--white:#fff;--bg:#f3f5f4;--ink:#18201c;--muted:#65716a;--card:#fff}
 *{box-sizing:border-box}
-body{
-  margin:0;background:var(--bg);color:var(--white);
-  font-family:Arial,Helvetica,sans-serif;
-}
-header{
-  background:linear-gradient(110deg,#a91922,#e53935 55%,#168447);
-  padding:24px max(18px,calc((100% - 1250px)/2));
-}
-.top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.logo{font-size:30px;font-weight:900}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,sans-serif}
+header{background:linear-gradient(115deg,#d92232,#ed4646 60%,#168447);color:white;padding:25px max(16px,calc((100% - 1200px)/2))}
+.top{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
+.logo{font-size:30px;font-weight:900;letter-spacing:-1px}
 .logo span{color:#d9ffe3}
-header p{margin:9px 0 0;color:#fff}
-main{max-width:1250px;margin:auto;padding:22px 16px}
-.search{
-  display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px
-}
-input,select,button{
-  padding:13px;border:1px solid #41434a;border-radius:10px;
-  background:var(--panel);color:white;font-size:15px
-}
+header p{margin:8px 0 0}
+.hero{padding:32px 0 12px;max-width:1200px;margin:auto}
+.hero h1{font-size:clamp(28px,5vw,48px);margin:0 0 10px}
+.hero p{line-height:1.6;max-width:650px}
+main{max-width:1200px;margin:auto;padding:16px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:15px 0}
+input,select,button{font:inherit;border-radius:10px;padding:12px;border:1px solid #d4dcd6}
+input,select{background:white;color:#18201c}
 input{flex:1;min-width:190px}
-select{max-width:100%;min-width:150px}
-button{cursor:pointer;background:var(--red);border:0;font-weight:bold}
-button:hover{filter:brightness(1.12)}
-.stats{color:var(--muted);margin:15px 0}
-h2{font-size:23px}
-.grid{
-  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px
-}
-.card{
-  background:var(--panel);border:1px solid #303239;border-radius:13px;
-  overflow:hidden;min-width:0;transition:transform .2s,border-color .2s
-}
-.card:hover{transform:translateY(-4px);border-color:var(--green)}
-.cover{
-  width:100%;aspect-ratio:460/215;object-fit:cover;
-  background:#292c32;display:block
-}
+button{cursor:pointer;background:var(--green);color:white;border:0;font-weight:bold}
+button:hover{filter:brightness(.93)}
+.pills{display:flex;gap:8px;overflow:auto;padding:4px 0 14px}
+.pills button{white-space:nowrap;background:white;color:#26322b;border:1px solid #d5ded7}
+.pills button.active{background:var(--green);color:white}
+.stats{color:var(--muted);margin:14px 0}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.card{background:var(--card);border:1px solid #e0e5e1;border-radius:14px;overflow:hidden;box-shadow:0 4px 14px #1020190b}
+.cover{width:100%;aspect-ratio:460/215;object-fit:cover;display:block;background:#e1e8e2}
 .info{padding:13px}
-.info h3{margin:0 0 9px;font-size:16px;line-height:1.35}
-.meta{font-size:12px;color:var(--muted);margin-bottom:12px}
+.info h3{font-size:16px;line-height:1.4;margin:0 0 8px}
+.tag{display:inline-block;background:#e5f5e9;color:#176638;padding:5px 8px;border-radius:6px;font-size:12px}
+.meta{font-size:12px;color:var(--muted);margin:10px 0}
 .actions{display:flex;gap:8px;align-items:center}
-.actions a{
-  color:white;text-decoration:none;background:var(--green);
-  padding:9px 10px;border-radius:8px;font-size:12px;font-weight:bold
-}
-.fav{margin-left:auto;padding:8px;background:#303239}
-.fav.active{background:var(--red)}
-#message{padding:18px;background:var(--panel);border-radius:10px;line-height:1.6}
-#more{display:block;margin:25px auto;padding:14px 25px}
-footer{
-  text-align:center;padding:30px 15px;color:var(--muted);
-  border-top:3px solid var(--green);margin-top:35px
-}
-footer b{color:var(--red)}
+.actions a{background:var(--red);color:white;text-decoration:none;padding:9px;border-radius:8px;font-size:12px;font-weight:bold}
+.fav{margin-left:auto;background:#f0f2f0;color:#b3242d;padding:8px 11px}
+.fav.active{background:#ffe5e5}
+#more{display:block;margin:24px auto;padding:14px 22px}
+.empty{text-align:center;padding:30px;background:white;border-radius:12px}
+footer{text-align:center;padding:28px 15px;background:#17221b;color:white;margin-top:35px}
+footer p{color:#c6d1c9}
 @media(max-width:900px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(max-width:600px){
-  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-  .logo{font-size:25px}header{padding:20px 15px}
-  .info{padding:10px}.info h3{font-size:14px}
-  .actions a{padding:8px 6px;font-size:11px}
-}
-@media(max-width:360px){.grid{grid-template-columns:1fr}}
+@media(max-width:600px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.logo{font-size:25px}.info{padding:10px}.info h3{font-size:14px}.actions a{font-size:11px;padding:8px 6px}}
+@media(max-width:350px){.grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <header>
   <div class="top">
     <div class="logo">🎮 Game<span>Verse</span></div>
-    <div>Играй. Исследуй. Открывай.</div>
+    <b>ИГРАЙ. ИССЛЕДУЙ.</b>
   </div>
-  <p>Твой мир компьютерных игр — в одном месте.</p>
+  <div class="hero">
+    <h1>Найди свою следующую игру</h1>
+    <p>Исследуй игровой мир: приключения, гонки, стратегии и многое другое.</p>
+  </div>
 </header>
-
 <main>
   <h2>🔥 Каталог игр</h2>
-  <div class="search">
-    <input id="search" placeholder="🔎 Найти игру по названию...">
+  <div class="toolbar">
+    <input id="search" placeholder="🔎 Поиск по названию...">
     <select id="sort">
-      <option value="default">Сначала популярные</option>
+      <option value="default">По умолчанию</option>
       <option value="az">Название: А–Я</option>
       <option value="za">Название: Я–А</option>
     </select>
-    <button id="favorites">♥ Избранное</button>
-    <button id="reset">Все игры</button>
+    <button id="favFilter">♥ Избранное</button>
+    <button id="reset">Сбросить</button>
   </div>
-
-  <div class="stats" id="stats">Подключаем каталог игр...</div>
-  <div id="message">Загружаем игры и обложки. Это может занять некоторое время.</div>
+  <div class="pills" id="genres"></div>
+  <div class="stats" id="stats"></div>
   <div class="grid" id="grid"></div>
-  <button id="more" hidden>Загрузить ещё игры</button>
+  <button id="more">Показать ещё</button>
 </main>
-
 <footer>
-  <div class="logo">Game<span style="color:#168447">Verse</span></div>
+  <div class="logo">Game<span style="color:#7ee5a0">Verse</span></div>
   <p>Игровой портал для настоящих геймеров.</p>
-  <p>© 2026 GameVerse</p>
+  <small>© 2026 GameVerse</small>
 </footer>
-
 <script>
-const grid = document.getElementById("grid");
-const message = document.getElementById("message");
-const stats = document.getElementById("stats");
-const more = document.getElementById("more");
-const search = document.getElementById("search");
-const sort = document.getElementById("sort");
-
-let games = [];
-let shown = 0;
-let favoritesOnly = false;
-let loading = false;
-const PAGE_SIZE = 50;
-const MAX_GAMES = 500;
-
-let favorites = new Set();
-try {
-  favorites = new Set(JSON.parse(localStorage.getItem("gv-favs") || "[]"));
-} catch(e) {}
-
-function escapeHTML(s) {
-  return String(s).replace(/[&<>"']/g, c => ({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-  })[c]);
+const originals = [
+[730,"Counter-Strike 2","Shooter",2023],
+[570,"Dota 2","MOBA",2013],
+[440,"Team Fortress 2","Shooter",2007],
+[1172470,"Apex Legends","Shooter",2019],
+[1091500,"Cyberpunk 2077","RPG",2020],
+[271590,"Grand Theft Auto V","Action",2015],
+[292030,"The Witcher 3: Wild Hunt","RPG",2015],
+[1245620,"ELDEN RING","RPG",2022],
+[1086940,"Baldur's Gate 3","RPG",2023],
+[1174180,"Red Dead Redemption 2","Action",2019],
+[413150,"Stardew Valley","Simulation",2016],
+[4000,"Garry's Mod","Sandbox",2006],
+[105600,"Terraria","Adventure",2011],
+[1145360,"Hades","Action",2020],
+[252490,"Rust","Survival",2018],
+[578080,"PUBG: BATTLEGROUNDS","Shooter",2017],
+[381210,"Dead by Daylight","Horror",2016],
+[359550,"Rainbow Six Siege","Shooter",2015],
+[548430,"Deep Rock Galactic","Action",2020],
+[526870,"Satisfactory","Simulation",2024],
+[892970,"Valheim","Survival",2021],
+[945360,"Among Us","Party",2018],
+[1966720,"Lethal Company","Horror",2023],
+[230410,"Warframe","Action",2013],
+[489830,"Skyrim Special Edition","RPG",2016],
+[377160,"Fallout 4","RPG",2015],
+[255710,"Cities: Skylines","Simulation",2015],
+[620,"Portal 2","Puzzle",2011],
+[400,"Portal","Puzzle",2007],
+[220,"Half-Life 2","Action",2004],
+[550,"Left 4 Dead 2","Shooter",2009],
+[49520,"Borderlands 2","Shooter",2012],
+[632360,"Risk of Rain 2","Action",2020],
+[427520,"Factorio","Simulation",2020],
+[281990,"Stellaris","Strategy",2016],
+[289070,"Civilization VI","Strategy",2016],
+[582010,"Monster Hunter: World","Action",2018],
+[238960,"Path of Exile","RPG",2013],
+[291550,"Brawlhalla","Fighting",2017],
+[990080,"Hogwarts Legacy","Adventure",2023],
+[108600,"Project Zomboid","Survival",2013],
+[322330,"Don't Starve Together","Survival",2016],
+[346110,"ARK: Survival Evolved","Survival",2017],
+[304930,"Unturned","Survival",2017],
+[211820,"Starbound","Adventure",2016],
+[252950,"Rocket League","Racing",2015],
+[255710,"Cities: Skylines","Simulation",2015],
+[227300,"Euro Truck Simulator 2","Simulation",2012],
+[239140,"Dying Light","Horror",2015],
+[386360,"SMITE","MOBA",2015],
+[236390,"War Thunder","Action",2013]
+];
+const genres=["Все","Action","Shooter","Adventure","RPG","Racing","Horror","Strategy","Simulation","Survival","Puzzle","Fighting","MOBA","Sandbox","Party"];
+const games=originals.filter((g,i,a)=>a.findIndex(x=>x[0]===g[0])===i).map(g=>({
+ id:String(g[0]),name:g[1],genre:g[2],year:g[3],
+ image:`https://cdn.cloudflare.steamstatic.com/steam/apps/${g[0]}/header.jpg`,
+ url:`https://store.steampowered.com/app/${g[0]}/`
+}));
+/* 500 slots: additional slots are clearly marked until real titles are added. */
+for(let i=games.length;i<500;i++){
+ games.push({id:"placeholder-"+i,name:`Новая игра — скоро добавим #${i+1}`,genre:"Скоро",year:"—",image:"",url:""});
 }
-
-function saveFavorites() {
-  try {
-    localStorage.setItem("gv-favs", JSON.stringify([...favorites]));
-  } catch(e) {}
+let activeGenre="Все",favoritesOnly=false,shown=0;
+const pageSize=32;
+let favorites=new Set();
+try{favorites=new Set(JSON.parse(localStorage.getItem("gv-favs")||"[]"))}catch(e){}
+const $=id=>document.getElementById(id);
+function safe(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function saveFav(){try{localStorage.setItem("gv-favs",JSON.stringify([...favorites]))}catch(e){}}
+function makeGenres(){
+ $("genres").innerHTML=genres.map(g=>`<button class="${g===activeGenre?"active":""}" data-genre="${safe(g)}">${safe(g)}</button>`).join("");
 }
-
-function render(reset = false) {
-  if (reset) {
-    grid.innerHTML = "";
-    shown = 0;
-  }
-
-  const q = search.value.trim().toLowerCase();
-  let list = games.filter(g =>
-    g.name.toLowerCase().includes(q)
-  );
-
-  if (favoritesOnly) {
-    list = list.filter(g => favorites.has(g.id));
-  }
-
-  if (sort.value === "az") list.sort((a,b)=>a.name.localeCompare(b.name));
-  if (sort.value === "za") list.sort((a,b)=>b.name.localeCompare(a.name));
-
-  if (reset) {
-    grid.innerHTML = "";
-    shown = 0;
-  }
-
-  const next = list.slice(shown, shown + PAGE_SIZE);
-
-  next.forEach(g => {
-    const card = document.createElement("article");
-    card.className = "card";
-    const img = g.image ||
-      "https://placehold.co/460x215/20242b/ffffff?text=GameVerse";
-
-    card.innerHTML = `
-      <img class="cover" loading="lazy"
-        src="${escapeHTML(img)}"
-        alt="${escapeHTML(g.name)}"
-        onerror="this.onerror=null;this.src='https://placehold.co/460x215/20242b/ffffff?text=GameVerse'">
-      <div class="info">
-        <h3>${escapeHTML(g.name)}</h3>
-        <div class="meta">PC · Steam · Игра #${g.id}</div>
-        <div class="actions">
-          <a href="${escapeHTML(g.url)}" target="_blank"
-             rel="noopener noreferrer">Подробнее ↗</a>
-          <button class="fav ${favorites.has(g.id)?"active":""}"
-            aria-label="Избранное"
-            data-id="${g.id}">${favorites.has(g.id)?"♥":"♡"}</button>
-        </div>
-      </div>`;
-    grid.appendChild(card);
-  });
-
-  shown += next.length;
-  stats.textContent =
-    `Загружено игр: ${games.length} из ${MAX_GAMES}` +
-    (favoritesOnly ? " · Избранное" : "") +
-    ` · Показано: ${shown} из ${list.length}`;
-
-  more.hidden = shown >= list.length || games.length === 0;
-  message.hidden = games.length > 0;
-  if (games.length === 0 && !loading) {
-    message.textContent =
-      "Каталог пока не загружен. Проверь подключение к интернету и нажми «Повторить загрузку».";
-  }
+function listGames(){
+ let list=games.filter(g=>
+ (activeGenre==="Все"||g.genre===activeGenre)&&
+ g.name.toLowerCase().includes($("search").value.trim().toLowerCase())&&
+ (!favoritesOnly||favorites.has(g.id))
+ );
+ if($("sort").value==="az")list.sort((a,b)=>a.name.localeCompare(b.name));
+ if($("sort").value==="za")list.sort((a,b)=>b.name.localeCompare(a.name));
+ return list;
 }
-
-
-async function loadGames() {
-  if (loading) return;
-  loading = true;
-
-  const catalog = [
-    [730,"Counter-Strike 2"],
-    [570,"Dota 2"],
-    [440,"Team Fortress 2"],
-    [1172470,"Apex Legends"],
-    [1085660,"Destiny 2"],
-    [1091500,"Cyberpunk 2077"],
-    [271590,"Grand Theft Auto V"],
-    [292030,"The Witcher 3: Wild Hunt"],
-    [1245620,"ELDEN RING"],
-    [1086940,"Baldur's Gate 3"],
-    [1174180,"Red Dead Redemption 2"],
-    [413150,"Stardew Valley"],
-    [4000,"Garry's Mod"],
-    [105600,"Terraria"],
-    [1145360,"Hades"],
-    [250900,"The Binding of Isaac: Rebirth"],
-    [252490,"Rust"],
-    [578080,"PUBG: BATTLEGROUNDS"],
-    [381210,"Dead by Daylight"],
-    [359550,"Rainbow Six Siege"],
-    [548430,"Deep Rock Galactic"],
-    [526870,"Satisfactory"],
-    [892970,"Valheim"],
-    [945360,"Among Us"],
-    [1966720,"Lethal Company"],
-    [230410,"Warframe"],
-    [444200,"World of Tanks Blitz"],
-    [236390,"War Thunder"],
-    [489830,"Skyrim Special Edition"],
-    [377160,"Fallout 4"],
-    [255710,"Cities: Skylines"],
-    [620,"Portal 2"],
-    [400,"Portal"],
-    [220,"Half-Life 2"],
-    [550,"Left 4 Dead 2"],
-    [49520,"Borderlands 2"],
-    [632360,"Risk of Rain 2"],
-    [427520,"Factorio"],
-    [281990,"Stellaris"],
-    [289070,"Civilization VI"],
-    [594650,"Hunt: Showdown"],
-    [582010,"Monster Hunter: World"],
-    [238960,"Path of Exile"],
-    [291550,"Brawlhalla"],
-    [990080,"Hogwarts Legacy"],
-    [108600,"Project Zomboid"],
-    [322330,"Don't Starve Together"],
-    [346110,"ARK: Survival Evolved"],
-    [304930,"Unturned"],
-    [211820,"Starbound"]
-  ];
-
-  games = catalog.map(([id, name]) => ({
-    id: String(id),
-    name,
-    image: `https://cdn.cloudflare.steamstatic.com/steam/apps/${id}/header.jpg`,
-    url: `https://store.steampowered.com/app/${id}/`
-  }));
-
-  loading = false;
-  render(true);
+function render(reset=true){
+ if(reset){shown=0;$("grid").innerHTML=""}
+ const list=listGames(),items=list.slice(shown,shown+pageSize);
+ items.forEach(g=>{
+  const card=document.createElement("article");card.className="card";
+  const cover=g.image||"https://placehold.co/460x215/e5eee7/168447?text=GameVerse";
+  card.innerHTML=`
+  <img class="cover" loading="lazy" src="${safe(cover)}" alt="${safe(g.name)}"
+   onerror="this.onerror=null;this.src='https://placehold.co/460x215/e5eee7/168447?text=GameVerse'">
+  <div class="info">
+   <h3>${safe(g.name)}</h3>
+   <span class="tag">${safe(g.genre)}</span>
+   <div class="meta">Год выхода: ${safe(g.year)}</div>
+   <div class="actions">
+   ${g.url?`<a href="${safe(g.url)}" target="_blank" rel="noopener">Подробнее ↗</a>`:"<span class='meta'>Карточка-заготовка</span>"}
+   <button class="fav ${favorites.has(g.id)?"active":""}" data-fav="${safe(g.id)}">${favorites.has(g.id)?"♥":"♡"}</button>
+   </div>
+  </div>`;
+  $("grid").appendChild(card);
+ });
+ shown+=items.length;
+ $("stats").textContent=`Карточек: ${list.length} · Показано: ${shown} · Реальных игр в каталоге: ${originals.filter(g=>g[1]!=="").length}`;
+ $("more").hidden=shown>=list.length;
+ if(!list.length)$("grid").innerHTML="<div class='empty'>Ничего не найдено. Попробуй другой запрос.</div>";
 }
-
-  if (loading || games.length >= MAX_GAMES) return;
-  loading = true;
-  message.hidden = false;
-  message.textContent = "Загружаем каталог Steam...";
-
-  const start = games.length;
-  try {
-    const url = "https://store.steampowered.com/search/results/?" +
-      new URLSearchParams({
-        query: "",
-        start: String(start),
-        count: String(PAGE_SIZE),
-        json: "1",
-        infinite: "1"
-      });
-
-    const response = await fetch(url);
-    if (!response.ok) throw new Error("Steam вернул ошибку");
-
-    const data = await response.json();
-    const html = data.results_html || "";
-    const doc = new DOMParser().parseFromString(html, "text/html");
-    const rows = doc.querySelectorAll(".search_result_row");
-    const batch = [];
-
-    rows.forEach(row => {
-      const link = row.querySelector("a");
-      const title = row.querySelector(".title");
-      const image = row.querySelector("img");
-      const id = row.dataset.dsAppid ||
-        (link?.href.match(/\/app\/(\d+)/) || [])[1];
-
-      if (!id || !title || games.some(g => g.id === id) ||
-          batch.some(g => g.id === id)) return;
-
-      batch.push({
-        id,
-        name: title.textContent.trim(),
-        image: image?.src || "",
-        url: link?.href || `https://store.steampowered.com/app/${id}/`
-      });
-    });
-
-    if (!batch.length) throw new Error("Steam не вернул игры");
-
-    games.push(...batch.slice(0, MAX_GAMES - games.length));
-    render(true);
-    message.hidden = true;
-  } catch (error) {
-    message.hidden = false;
-    message.innerHTML =
-      "<b>Не удалось загрузить каталог автоматически.</b><br>" +
-      "Возможно, Steam недоступен из браузера или запрос заблокирован. " +
-      "Это не означает, что GitHub Pages сломан.<br><br>" +
-      "<button id='retry'>Повторить загрузку</button>";
-    document.getElementById("retry").onclick = loadGames;
-  } finally {
-    loading = false;
-    more.hidden = games.length === 0 || games.length >= MAX_GAMES;
-  }
-}
-
-grid.addEventListener("click", e => {
-  const btn = e.target.closest("[data-id]");
-  if (!btn) return;
-  const id = btn.dataset.id;
-
-  if (favorites.has(id)) favorites.delete(id);
-  else favorites.add(id);
-
-  saveFavorites();
-  render(true);
+$("genres").addEventListener("click",e=>{
+ const b=e.target.closest("[data-genre]");if(!b)return;
+ activeGenre=b.dataset.genre;makeGenres();render();
 });
-
-search.addEventListener("input", () => render(true));
-sort.addEventListener("change", () => render(true));
-
-document.getElementById("favorites").onclick = () => {
-  favoritesOnly = true;
-  render(true);
-};
-
-document.getElementById("reset").onclick = () => {
-  favoritesOnly = false;
-  search.value = "";
-  sort.value = "default";
-  render(true);
-};
-
-more.onclick = async () => {
-  if (shown >= games.length && games.length < MAX_GAMES) {
-    await loadGames();
-  } else {
-    render(false);
-  }
-};
-
-loadGames();
+$("grid").addEventListener("click",e=>{
+ const b=e.target.closest("[data-fav]");if(!b)return;
+ const id=b.dataset.fav;
+ favorites.has(id)?favorites.delete(id):favorites.add(id);
+ saveFav();render();
+});
+$("search").addEventListener("input",()=>render());
+$("sort").addEventListener("change",()=>render());
+$("favFilter").onclick=()=>{favoritesOnly=!favoritesOnly;$("favFilter").textContent=favoritesOnly?"♥ Показать все":"♥ Избранное";render()};
+$("reset").onclick=()=>{activeGenre="Все";favoritesOnly=false;$("search").value="";$("sort").value="default";$("favFilter").textContent="♥ Избранное";makeGenres();render()};
+$("more").onclick=()=>render(false);
+makeGenres();render();
 </script>
 </body>
 </html>
