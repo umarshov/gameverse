@@ -3,905 +3,500 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#101e2d">
-<meta name="description" content="GameVerse — каталог компьютерных игр с обложками, описаниями, жанрами и избранным.">
-<title>GameVerse — каталог игр</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101820">
+<meta name="description" content="GameVerse — каталог компьютерных игр. Открывай новые игры, изучай жанры и находи приключения.">
+<title>GameVerse — мир компьютерных игр</title>
 <style>
 :root {
-  --bg: #0b1420;
-  --panel: #172536;
-  --panel2: #20364a;
-  --text: #f1f5f9;
-  --muted: #a6bbce;
-  --blue: #66c0f4;
-  --line: #30465a;
+  --bg:#101820; --panel:#182630; --panel2:#213644;
+  --blue:#43a6e8; --text:#e9f1f8; --muted:#9eafbd;
+  --green:#a4d007; --border:#304653;
 }
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: Arial, Helvetica, sans-serif;
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);
+font-family:Arial,Helvetica,sans-serif}
+button,input,select{font:inherit}
+button,a{-webkit-tap-highlight-color:transparent}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer}
+.topbar{background:#090f14;border-bottom:1px solid #283c48;
+position:sticky;top:0;z-index:10}
+.nav{max-width:1400px;margin:auto;padding:15px 22px;
+display:flex;align-items:center;justify-content:space-between;gap:18px}
+.logo{font-size:27px;font-weight:900;letter-spacing:-1px;white-space:nowrap}
+.logo span{color:var(--blue)}
+.navlinks{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.navlinks a{font-size:14px;color:#c5d5e1}
+.navlinks a:hover{color:var(--blue)}
+.hero{background:linear-gradient(115deg,#163b58,#142631 55%,#101820);
+border-bottom:1px solid var(--border)}
+.hero-inner{max-width:1400px;margin:auto;padding:48px 22px 42px}
+.eyebrow{color:#70c5ff;text-transform:uppercase;font-size:12px;
+font-weight:bold;letter-spacing:3px}
+h1{font-size:clamp(34px,5vw,60px);line-height:1.05;margin:13px 0}
+.hero p{color:#c1d2df;max-width:650px;line-height:1.7}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.btn{display:inline-flex;align-items:center;justify-content:center;
+padding:12px 17px;border:0;border-radius:5px;font-weight:bold;
+background:var(--blue);color:#061725}
+.btn:hover{filter:brightness(1.12)}
+.btn.secondary{background:#263e4c;color:white;border:1px solid #476173}
+.stats{display:flex;gap:30px;flex-wrap:wrap;margin-top:30px}
+.stat strong{font-size:23px;display:block}
+.stat small{color:var(--muted)}
+main{max-width:1400px;margin:auto;padding:30px 22px 55px}
+.section-title{font-size:24px;margin:0 0 17px}
+.toolbar{display:grid;grid-template-columns:minmax(200px,2fr) 1fr 1fr;
+gap:12px;margin-bottom:18px}
+.control{width:100%;background:#172630;border:1px solid #354b59;
+border-radius:5px;padding:13px;color:white;min-width:0}
+.control:focus{outline:2px solid var(--blue);border-color:transparent}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0 23px}
+.tab{padding:10px 14px;background:#1b2c37;color:#c7d6e1;
+border:1px solid #304653;border-radius:4px}
+.tab.active,.tab:hover{background:#28638a;color:white;border-color:#4ba8e6}
+.catalog-heading{display:flex;align-items:center;justify-content:space-between;
+gap:12px;margin:22px 0 16px;flex-wrap:wrap}
+.result-count{color:var(--muted);font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px}
+.card{background:var(--panel);border:1px solid #293e4b;border-radius:7px;
+overflow:hidden;min-width:0;transition:transform .18s,border-color .18s}
+.card:hover{transform:translateY(-4px);border-color:#4a94c4}
+.cover-wrap{position:relative;background:#203746;aspect-ratio:460/215;overflow:hidden}
+.cover{width:100%;height:100%;object-fit:cover;display:block}
+.cover-fallback{height:100%;display:flex;align-items:center;justify-content:center;
+padding:18px;text-align:center;font-size:22px;font-weight:bold;
+background:linear-gradient(135deg,#24465a,#13212b)}
+.fav{position:absolute;top:9px;right:9px;border:0;border-radius:5px;
+background:#0c151dcc;color:white;font-size:22px;width:39px;height:39px}
+.fav.on{color:#ffcf55}
+.card-body{padding:14px}
+.card h3{font-size:17px;margin:0 0 9px;line-height:1.35}
+.meta{display:flex;align-items:center;justify-content:space-between;
+gap:8px;color:var(--muted);font-size:12px;margin-bottom:11px}
+.genre{display:inline-block;padding:5px 8px;background:#243e4e;
+border-radius:3px;color:#a9d9f8;font-size:11px}
+.desc{font-size:13px;color:#b4c3ce;line-height:1.55;min-height:60px;
+margin:11px 0 14px}
+.card-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.rating{color:#ffd46b;font-size:13px}
+.steam-link{background:linear-gradient(90deg,#2879a9,#43a6e8);
+color:#061725;padding:9px 11px;border-radius:4px;font-weight:bold;
+font-size:12px;text-align:center}
+.loadrow{text-align:center;margin:28px 0}
+.empty{padding:35px;text-align:center;background:var(--panel);border-radius:6px;
+color:var(--muted);grid-column:1/-1}
+.info-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+gap:16px;margin-top:45px}
+.info{background:#172630;border:1px solid var(--border);border-radius:6px;padding:22px}
+.info .emoji{font-size:28px}
+.info h3{margin:12px 0 8px}
+.info p{color:var(--muted);font-size:14px;line-height:1.65}
+footer{border-top:1px solid var(--border);background:#090f14}
+.footer-inner{max-width:1400px;margin:auto;padding:27px 22px;
+display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;
+color:var(--muted);font-size:13px}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+background:#dceefa;color:#122533;padding:12px 18px;border-radius:5px;
+z-index:20;display:none;max-width:90%;text-align:center}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:700px){
+ .nav{padding:13px 15px;align-items:flex-start;flex-direction:column}
+ .navlinks{gap:15px}
+ .hero-inner{padding:35px 16px}
+ main{padding:24px 14px 40px}
+ .toolbar{grid-template-columns:1fr}
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .card-body{padding:10px}
+ .card h3{font-size:14px}
+ .desc{font-size:12px;min-height:80px}
+ .steam-link{font-size:11px;padding:8px 9px}
+ .info-grid{grid-template-columns:1fr}
+ .stats{gap:18px}
 }
-button, input, select { font: inherit; }
-button, select { cursor: pointer; }
-a { color: inherit; }
-header {
-  background:
-    radial-gradient(ellipse at 80% 10%, #24547a 0, transparent 40%),
-    linear-gradient(125deg, #1b344b, #101923 75%);
-  border-bottom: 1px solid var(--line);
-}
-nav {
-  max-width: 1350px;
-  margin: auto;
-  padding: 22px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-.logo {
-  font-size: 30px;
-  font-weight: 900;
-  letter-spacing: -1px;
-}
-.logo span { color: var(--blue); }
-.nav-label {
-  color: #b8d8ed;
-  font-size: 11px;
-  letter-spacing: 2px;
-}
-.hero {
-  max-width: 1350px;
-  margin: auto;
-  padding: 58px 22px 65px;
-}
-.eyebrow {
-  color: var(--blue);
-  font-size: 12px;
-  font-weight: bold;
-  letter-spacing: 3px;
-}
-.hero h1 {
-  max-width: 800px;
-  margin: 18px 0;
-  font-size: clamp(38px, 6vw, 72px);
-  line-height: 1.05;
-}
-.hero h1 em {
-  color: var(--blue);
-  font-style: normal;
-}
-.hero p {
-  max-width: 650px;
-  color: #bdcbd8;
-  line-height: 1.8;
-}
-.hero-badges {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 25px;
-}
-.hero-badges span {
-  padding: 10px 14px;
-  border: 1px solid #47708d;
-  border-radius: 5px;
-  background: #1c3448;
-  color: #d9eaf6;
-  font-size: 13px;
-}
-main {
-  max-width: 1350px;
-  margin: auto;
-  padding: 35px 22px;
-}
-.section-title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-.section-title h2 { margin: 0; font-size: 28px; }
-.section-title p { color: var(--muted); font-size: 14px; }
-.controls {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin: 25px 0 14px;
-}
-input, select {
-  min-height: 46px;
-  border: 1px solid #34516a;
-  background: #101c29;
-  color: var(--text);
-  padding: 12px 14px;
-  border-radius: 5px;
-  font-size: 14px;
-}
-input { flex: 1; min-width: 180px; }
-select { min-width: 145px; }
-input:focus, select:focus {
-  outline: 2px solid var(--blue);
-}
-button {
-  border: 1px solid transparent;
-  border-radius: 4px;
-  padding: 12px 16px;
-  font-weight: bold;
-  transition: background .2s, transform .2s;
-}
-button:hover { transform: translateY(-1px); }
-button:focus-visible, a:focus-visible {
-  outline: 2px solid white;
-  outline-offset: 3px;
-}
-.blue-btn {
-  background: linear-gradient(90deg, #75b9e7, #4b91c5);
-  color: #071521;
-}
-.blue-btn:hover { background: #91d0f5; }
-.dark-btn {
-  background: #284b67;
-  border-color: #416b8a;
-  color: white;
-}
-.dark-btn:hover { background: #35678d; }
-.genre-list {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding: 10px 0 20px;
-}
-.genre-list button {
-  white-space: nowrap;
-  background: #182a3a;
-  border: 1px solid #304b62;
-  color: #c1d5e5;
-  font-size: 13px;
-}
-.genre-list button:hover,
-.genre-list button.active {
-  background: #35688d;
-  border-color: var(--blue);
-  color: white;
-}
-.summary {
-  color: var(--muted);
-  font-size: 13px;
-  margin: 6px 0 18px;
-}
-.grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 18px;
-}
-.card {
-  min-width: 0;
-  overflow: hidden;
-  border: 1px solid #273f54;
-  border-radius: 5px;
-  background: linear-gradient(145deg, #1b3043, #121f2c);
-  transition: transform .2s, border-color .2s, box-shadow .2s;
-}
-.card:hover {
-  transform: translateY(-5px);
-  border-color: var(--blue);
-  box-shadow: 0 10px 25px #0005;
-}
-.cover-wrap {
-  position: relative;
-  aspect-ratio: 460 / 215;
-  background: #152638;
-  overflow: hidden;
-}
-.cover {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.cover-fallback {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 9px;
-  height: 100%;
-  min-height: 100px;
-  background: linear-gradient(135deg, #245477, #132335);
-  color: white;
-  text-align: center;
-  padding: 10px;
-}
-.cover-fallback strong {
-  font-size: 21px;
-  color: var(--blue);
-}
-.cover-fallback span {
-  font-size: 11px;
-  letter-spacing: 1px;
-}
-.cover-tag {
-  position: absolute;
-  top: 9px;
-  left: 9px;
-  background: #101c2be8;
-  border: 1px solid #ffffff35;
-  padding: 6px 8px;
-  border-radius: 3px;
-  font-size: 10px;
-  font-weight: bold;
-}
-.card-body { padding: 15px; }
-.card h3 {
-  font-size: 16px;
-  line-height: 1.4;
-  margin: 0 0 12px;
-}
-.tag {
-  display: inline-block;
-  color: #9bd8ff;
-  background: #66c0f41a;
-  border: 1px solid #66c0f440;
-  padding: 5px 8px;
-  border-radius: 3px;
-  font-size: 11px;
-}
-.description {
-  color: #bdcbd8;
-  font-size: 13px;
-  line-height: 1.65;
-  margin: 13px 0;
-}
-.details {
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
-  color: var(--muted);
-  font-size: 12px;
-  margin: 13px 0;
-}
-.card-actions {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-.details-link {
-  flex: 1;
-  text-align: center;
-  text-decoration: none;
-  background: linear-gradient(90deg, #75b9e7, #4b91c5);
-  color: #071521;
-  padding: 11px 7px;
-  border-radius: 4px;
-  font-size: 12px;
-  font-weight: bold;
-}
-.details-link:hover { background: #91d0f5; }
-.fav {
-  background: #243b50;
-  color: #c8e8ff;
-  padding: 9px 11px;
-  font-size: 19px;
-}
-.fav.active {
-  background: #493044;
-  color: #ff8aa5;
-}
-#more { display: block; margin: 30px auto 0; }
-.empty {
-  grid-column: 1 / -1;
-  padding: 35px 15px;
-  text-align: center;
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 5px;
-  color: var(--muted);
-  line-height: 1.7;
-}
-.notice {
-  margin-top: 28px;
-  background: #15283a;
-  border: 1px solid var(--line);
-  border-radius: 5px;
-  padding: 16px;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.7;
-}
-footer {
-  margin-top: 35px;
-  border-top: 1px solid var(--line);
-  padding: 35px 20px;
-  text-align: center;
-  background: #080f17;
-  color: var(--muted);
-}
-footer .logo { color: white; }
-@media (max-width: 1000px) {
-  .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-}
-@media (max-width: 680px) {
-  nav { padding: 17px; }
-  .hero { padding: 40px 17px 48px; }
-  main { padding: 25px 14px; }
-  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-  .card-body { padding: 10px; }
-  .card h3 { font-size: 14px; }
-  .description { font-size: 12px; }
-  .details-link { font-size: 11px; }
-  .section-title h2 { font-size: 23px; }
-}
-@media (max-width: 360px) {
-  .grid { grid-template-columns: 1fr; }
-}
+@media(max-width:380px){.grid{grid-template-columns:1fr}}
 </style>
 </head>
-
 <body>
-<header>
-  <nav>
-    <div class="logo">🎮 Game<span>Verse</span></div>
-    <div class="nav-label">YOUR NEXT GAME STARTS HERE</div>
-  </nav>
-
-  <section class="hero">
-    <div class="eyebrow">ИГРОВАЯ ВСЕЛЕННАЯ</div>
-    <h1>Найди свою<br><em>следующую игру.</em></h1>
-    <p>Исследуй игровые миры, открывай новые приключения и собирай личную коллекцию любимых игр.</p>
-    <div class="hero-badges">
-      <span>🎯 Экшен</span>
-      <span>🌍 Приключения</span>
-      <span>🏎️ Гонки</span>
-      <span>🧙 RPG</span>
-      <span>❤️ Избранное</span>
+<header class="topbar">
+  <nav class="nav">
+    <a class="logo" href="#">GAME<span>VERSE</span></a>
+    <div class="navlinks">
+      <a href="#catalog">Каталог</a>
+      <a href="#popular">Популярные</a>
+      <a href="#about">О сайте</a>
+      <a href="#favorites" id="favNav">⭐ Избранное</a>
     </div>
-  </section>
+  </nav>
 </header>
 
-<main>
-  <div class="section-title">
-    <div>
-      <h2>🔥 Каталог игр</h2>
-      <p>Обложки, описания, жанры и даты выхода</p>
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Твоя игровая вселенная</div>
+    <h1>Найди свою<br>следующую игру.</h1>
+    <p>Исследуй мир компьютерных игр: экшен, шутеры, гонки, RPG, хорроры и многое другое. Выбирай игру и открывай её официальную страницу.</p>
+    <div class="hero-actions">
+      <a class="btn" href="#catalog">🎮 Открыть каталог</a>
+      <button class="btn secondary" id="randomBtn">🎲 Случайная игра</button>
     </div>
-    <button class="blue-btn" id="random">🎲 Случайная игра</button>
+    <div class="stats">
+      <div class="stat"><strong id="gameStat">100+</strong><small>игр в каталоге</small></div>
+      <div class="stat"><strong>15+</strong><small>жанров</small></div>
+      <div class="stat"><strong>Бесплатно</strong><small>для посетителей</small></div>
+    </div>
   </div>
+</section>
 
-  <div class="controls">
-    <input id="search" type="search" placeholder="🔎 Название, жанр или описание...">
-    <select id="sort" aria-label="Сортировка">
-      <option value="default">Сортировка</option>
-      <option value="az">Название: А–Я</option>
-      <option value="za">Название: Я–А</option>
-      <option value="new">Сначала новые</option>
-      <option value="old">Сначала старые</option>
-    </select>
-    <button class="dark-btn" id="favFilter">♥ Избранное</button>
-    <button class="blue-btn" id="reset">Сброс</button>
-  </div>
+<main>
+  <section id="popular">
+    <h2 class="section-title">🔥 Игровая подборка</h2>
+    <p style="color:var(--muted);line-height:1.6;margin-top:-7px">
+      Ищи игры, открывай описания и сохраняй понравившиеся в избранное.
+    </p>
+  </section>
 
-  <div class="genre-list" id="genres"></div>
-  <div class="summary" id="summary" aria-live="polite"></div>
-  <div class="grid" id="grid"></div>
-  <button class="blue-btn" id="more">Показать ещё ↓</button>
+  <section id="catalog">
+    <div class="catalog-heading">
+      <h2 class="section-title" style="margin:0">🎮 Каталог игр</h2>
+      <span class="result-count" id="resultCount"></span>
+    </div>
 
-  <div class="notice">
-    ℹ️ GameVerse — независимый каталог компьютерных игр. Кнопка «Подробнее» открывает страницу игры в Steam. GameVerse не размещает игровые файлы и не является официальным сайтом Steam. Обложки загружаются из внешнего источника, поэтому доступность изображений зависит от него.
-  </div>
+    <div class="toolbar">
+      <input class="control" id="search" type="search"
+        placeholder="🔎 Поиск игры по названию..." aria-label="Поиск игр">
+      <select class="control" id="genre" aria-label="Выбрать жанр">
+        <option value="Все">Все жанры</option>
+      </select>
+      <select class="control" id="sort" aria-label="Сортировка">
+        <option value="featured">Рекомендуемые</option>
+        <option value="az">Название: А–Я</option>
+        <option value="year">Сначала новые</option>
+        <option value="old">Сначала старые</option>
+        <option value="rating">По оценке GameVerse</option>
+      </select>
+    </div>
+
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-mode="all">Все игры</button>
+      <button class="tab" data-mode="popular">🔥 Популярные</button>
+      <button class="tab" data-mode="new">🆕 Новинки</button>
+      <button class="tab" data-mode="favorites">⭐ Избранное</button>
+    </div>
+
+    <div class="grid" id="grid"></div>
+    <div class="loadrow">
+      <button class="btn secondary" id="moreBtn">Показать ещё игры ↓</button>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2 class="section-title">Почему GameVerse?</h2>
+    <div class="info-grid">
+      <article class="info">
+        <div class="emoji">🔎</div>
+        <h3>Быстрый поиск</h3>
+        <p>Находи игры по названию, жанру или описанию без долгого просмотра всего каталога.</p>
+      </article>
+      <article class="info">
+        <div class="emoji">⭐</div>
+        <h3>Твоё избранное</h3>
+        <p>Сохраняй любимые игры. Список останется в этом браузере после перезагрузки страницы.</p>
+      </article>
+      <article class="info">
+        <div class="emoji">🔗</div>
+        <h3>Страницы игр</h3>
+        <p>Переходи к официальным страницам игр в Steam, чтобы читать подробности и проверять системные требования.</p>
+      </article>
+    </div>
+  </section>
 </main>
 
 <footer>
-  <div class="logo">Game<span>Verse</span></div>
-  <p>Игровой мир начинается здесь.</p>
-  <small>© 2026 GameVerse</small>
+  <div class="footer-inner">
+    <div><a class="logo" href="#" style="font-size:20px">GAME<span>VERSE</span></a><p>Исследуй. Выбирай. Играй.</p></div>
+    <div>Фанатский каталог игр. GameVerse не принадлежит Valve или Steam.<br>Все названия и изображения принадлежат их правообладателям.</div>
+    <div>© <span id="yearNow"></span> GameVerse</div>
+  </div>
 </footer>
+<div class="toast" id="toast" role="status"></div>
 
 <script>
 "use strict";
 
-const games = [  
-    id: 271590,
-    title: "Grand Theft Auto V",
-    year: 2015,
-    genre: "Экшен",
-    description: "Открытый мир, миссии и приключения в Лос-Сантосе."
-  // Новые игры добавляем здесь
-];
-  {
-    id: 271590, name: "Grand Theft Auto V", genre: "Экшен", year: 2015,
-    description: "Открытый мир Лос-Сантоса, захватывающие миссии, автомобили и история трёх необычных героев."
-  },
-  {
-    id: 730, name: "Counter-Strike 2", genre: "Шутер", year: 2023,
-    description: "Тактический командный шутер, где важны точность, стратегия, командная работа и реакция."
-  },
-  {
-    id: 578080, name: "PUBG: BATTLEGROUNDS", genre: "Шутер", year: 2017,
-    description: "Соревновательный шутер с большими картами, поиском снаряжения и напряжёнными матчами на выживание."
-  },
-  {
-    id: 1091500, name: "Cyberpunk 2077", genre: "RPG", year: 2020,
-    description: "Футуристическая ролевая игра в огромном городе Найт-Сити с заданиями, технологиями и разветвлённой историей."
-  },
-  {
-    id: 292030, name: "The Witcher 3: Wild Hunt", genre: "RPG", year: 2015,
-    description: "Приключения ведьмака Геральта в фэнтезийном мире, полном монстров, сложных решений и запоминающихся персонажей."
-  },
-  {
-    id: 1245620, name: "ELDEN RING", genre: "RPG", year: 2022,
-    description: "Масштабное фэнтезийное приключение с исследованием мира, необычными противниками и глубоким развитием персонажа."
-  },
-  {
-    id: 1086940, name: "Baldur's Gate 3", genre: "RPG", year: 2023,
-    description: "Ролевая игра с тактическими пошаговыми сражениями, диалогами и решениями, меняющими ход истории."
-  },
-  {
-    id: 1174180, name: "Red Dead Redemption 2", genre: "Приключения", year: 2019,
-    description: "История Артура Моргана на Диком Западе с открытым миром, путешествиями и заданиями банды."
-  },
-  {
-    id: 108600, name: "Project Zomboid", genre: "Выживание", year: 2013,
-    description: "Детализированная игра о выживании в открытом мире, где нужно искать припасы и обустраивать безопасное убежище."
-  },
-  {
-    id: 4000, name: "Garry's Mod", genre: "Песочница", year: 2006,
-    description: "Физическая песочница для экспериментов, строительства, создания собственных сцен и игры с друзьями."
-  },
-  {
-    id: 105600, name: "Terraria", genre: "Приключения", year: 2011,
-    description: "Двухмерный мир для исследования, добычи ресурсов, строительства, создания предметов и сражений с боссами."
-  },
-  {
-    id: 413150, name: "Stardew Valley", genre: "Симулятор", year: 2016,
-    description: "Уютный симулятор фермы: выращивай урожай, рыбачь, знакомься с жителями и развивай собственное хозяйство."
-  },
-  {
-    id: 570, name: "Dota 2", genre: "MOBA", year: 2013,
-    description: "Командная стратегическая игра, где герои с разными способностями сражаются за контроль карты и победу."
-  },
-  {
-    id: 440, name: "Team Fortress 2", genre: "Шутер", year: 2007,
-    description: "Командный шутер с ярким стилем, несколькими классами персонажей и разнообразными игровыми режимами."
-  },
-  {
-    id: 1172470, name: "Apex Legends", genre: "Шутер", year: 2019,
-    description: "Командный соревновательный шутер с героями, уникальными умениями и быстрыми матчами."
-  },
-  {
-    id: 252490, name: "Rust", genre: "Выживание", year: 2018,
-    description: "Многопользовательская игра о выживании, строительстве базы, сборе ресурсов и взаимодействии с другими игроками."
-  },
-  {
-    id: 381210, name: "Dead by Daylight", genre: "Хоррор", year: 2016,
-    description: "Асимметричная многопользовательская игра в жанре ужаса с противостоянием команды выживших и охотника."
-  },
-  {
-    id: 359550, name: "Rainbow Six Siege", genre: "Шутер", year: 2015,
-    description: "Тактические командные матчи с операторами, разрушаемыми стенами и планированием каждого раунда."
-  },
-  {
-    id: 548430, name: "Deep Rock Galactic", genre: "Экшен", year: 2020,
-    description: "Кооперативное исследование подземных пещер, добыча ресурсов и командные задания в роли космических шахтёров."
-  },
-  {
-    id: 526870, name: "Satisfactory", genre: "Симулятор", year: 2024,
-    description: "Строй огромные производственные линии, автоматизируй производство и исследуй чужую планету."
-  },
-  {
-    id: 892970, name: "Valheim", genre: "Выживание", year: 2021,
-    description: "Приключение в мире скандинавских мифов: исследуй биомы, строй поселения и отправляйся в опасные экспедиции."
-  },
-  {
-    id: 945360, name: "Among Us", genre: "Вечеринка", year: 2018,
-    description: "Многопользовательская игра на общение и дедукцию, где участники выполняют задания и пытаются найти обманщика."
-  },
-  {
-    id: 1966720, name: "Lethal Company", genre: "Хоррор", year: 2023,
-    description: "Кооперативные экспедиции по заброшенным объектам, поиск ценностей и командные попытки выполнить задания."
-  },
-  {
-    id: 230410, name: "Warframe", genre: "Экшен", year: 2013,
-    description: "Быстрый научно-фантастический экшен с разнообразными героями, оружием, миссиями и кооперативом."
-  },
-  {
-    id: 489830, name: "The Elder Scrolls V: Skyrim Special Edition", genre: "RPG", year: 2016,
-    description: "Фэнтезийная ролевая игра с драконами, магией, подземельями и свободой исследовать огромный мир."
-  },
-  {
-    id: 377160, name: "Fallout 4", genre: "RPG", year: 2015,
-    description: "Ролевая игра в постапокалиптическом мире с исследованием локаций, заданиями и строительством поселений."
-  },
-  {
-    id: 620, name: "Portal 2", genre: "Головоломка", year: 2011,
-    description: "Остроумная головоломка, где порталы помогают решать пространственные задачи. Есть отдельный кооперативный режим."
-  },
-  {
-    id: 400, name: "Portal", genre: "Головоломка", year: 2007,
-    description: "Классическая головоломка от первого лица, в которой портал-пушка меняет привычные правила пространства."
-  },
-  {
-    id: 220, name: "Half-Life 2", genre: "Экшен", year: 2004,
-    description: "Научно-фантастическое приключение с физическими головоломками, исследованием локаций и насыщенной историей."
-  },
-  {
-    id: 550, name: "Left 4 Dead 2", genre: "Шутер", year: 2009,
-    description: "Кооперативный шутер, в котором команда проходит кампании и вместе преодолевает постоянно меняющиеся испытания."
-  },
-  {
-    id: 49520, name: "Borderlands 2", genre: "Шутер", year: 2012,
-    description: "Приключенческий шутер с ролевыми элементами, огромным количеством экипировки и кооперативными миссиями."
-  },
-  {
-    id: 632360, name: "Risk of Rain 2", genre: "Экшен", year: 2020,
-    description: "Динамичный экшен с процедурными уровнями, предметами, усиливающими героя, и кооперативным прохождением."
-  },
-  {
-    id: 427520, name: "Factorio", genre: "Стратегия", year: 2020,
-    description: "Проектируй заводы, автоматизируй производство, оптимизируй логистику и расширяй промышленную сеть."
-  },
-  {
-    id: 281990, name: "Stellaris", genre: "Стратегия", year: 2016,
-    description: "Космическая стратегия о развитии цивилизации, исследовании галактики, дипломатии и управлении империей."
-  },
-  {
-    id: 289070, name: "Sid Meier's Civilization VI", genre: "Стратегия", year: 2016,
-    description: "Пошаговая стратегия, где цивилизация развивается от древности до современности через науку, культуру и дипломатию."
-  },
-  {
-    id: 582010, name: "Monster Hunter: World", genre: "Экшен", year: 2018,
-    description: "Охоться на огромных фантастических существ, изучай их поведение и создавай новое снаряжение."
-  },
-  {
-    id: 238960, name: "Path of Exile", genre: "RPG", year: 2013,
-    description: "Бесплатная ролевая игра с мрачным миром, сложным развитием персонажа и большим выбором экипировки."
-  },
-  {
-    id: 291550, name: "Brawlhalla", genre: "Файтинг", year: 2017,
-    description: "Динамичный платформенный файтинг с разными персонажами и режимами локальной и сетевой игры."
-  },
-  {
-    id: 990080, name: "Hogwarts Legacy", genre: "Приключения", year: 2023,
-    description: "Приключение в волшебном мире, где можно изучать заклинания, исследовать замок и раскрывать тайны."
-  },
-  {
-    id: 322330, name: "Don't Starve Together", genre: "Выживание", year: 2016,
-    description: "Кооперативное выживание в необычном мире: собирай ресурсы, готовь еду и обустраивай лагерь."
-  },
-  {
-    id: 346110, name: "ARK: Survival Evolved", genre: "Выживание", year: 2017,
-    description: "Исследуй остров с динозаврами, собирай ресурсы, строй базы и приручай доисторических существ."
-  },
-  {
-    id: 304930, name: "Unturned", genre: "Выживание", year: 2017,
-    description: "Игра о выживании в блочном мире с исследованием, поиском ресурсов и строительством укрытий."
-  },
-  {
-    id: 211820, name: "Starbound", genre: "Приключения", year: 2016,
-    description: "Исследуй процедурно генерируемые планеты, строй базы, собирай предметы и путешествуй по космосу."
-  },
-  {
-    id: 252950, name: "Rocket League", genre: "Гонки", year: 2015,
-    description: "Необычный спортивный экшен, в котором управляемые автомобили играют в футбол на аренах."
-  },
-  {
-    id: 227300, name: "Euro Truck Simulator 2", genre: "Симулятор", year: 2012,
-    description: "Симулятор дальнобойщика с перевозкой грузов, развитием транспортной компании и поездками по Европе."
-  },
-  {
-    id: 239140, name: "Dying Light", genre: "Хоррор", year: 2015,
-    description: "Приключенческий экшен с паркуром, исследованием города и опасностями, особенно заметными ночью."
-  },
-  {
-    id: 236390, name: "War Thunder", genre: "Симулятор", year: 2013,
-    description: "Военная техника разных эпох, воздушные и наземные сражения и широкий выбор машин."
-  },
-  {
-    id: 255710, name: "Cities: Skylines", genre: "Симулятор", year: 2015,
-    description: "Создавай собственный город, планируй дороги, развивай инфраструктуру и управляй бюджетом."
-  },
-  {
-    id: 1145360, name: "Hades", genre: "Экшен", year: 2020,
-    description: "Динамичный экшен с видом сверху, мифологическим миром, улучшениями и историей сына Аида."
-  },
-  {
-    id: 1085660, name: "Destiny 2", genre: "Шутер", year: 2017,
-    description: "Научно-фантастический шутер с кооперативными заданиями, исследованием миров и подбором экипировки."
-  },
-  {
-    id: 1172620, name: "Sea of Thieves", genre: "Приключения", year: 2020,
-    description: "Пиратские путешествия, управление кораблём, поиск сокровищ и совместные морские приключения."
-  },
-  {
-    id: 440900, name: "Conan Exiles", genre: "Выживание", year: 2018,
-    description: "Выживай в суровом открытом мире, строй крепости, собирай ресурсы и исследуй древние руины."
-  },
-  {
-    id: 1080110, name: "F1 2020", genre: "Гонки", year: 2020,
-    description: "Автоспортивный симулятор с гоночными трассами, настройкой болидов и карьерным режимом."
-  },
-  {
-    id: 814380, name: "Sekiro: Shadows Die Twice", genre: "Экшен", year: 2019,
-    description: "Приключение в фэнтезийной версии Японии с акцентом на точные сражения, парирование и исследование."
-  },
-  {
-    id: 2552430, name: "PAYDAY 3", genre: "Шутер", year: 2023,
-    description: "Кооперативные задания с планированием ограблений, скрытным прохождением и командным взаимодействием."
-  },
-  {
-    id: 1172620, name: "Sea of Thieves", genre: "Приключения", year: 2020,
-    description: "Морские приключения, путешествия на корабле и поиск сокровищ вместе с командой."
-  }
-];
-
-const genres = [
-  "Все", "Экшен", "Шутер", "Приключения", "RPG",
-  "Гонки", "Хоррор", "Стратегия", "Симулятор",
-  "Выживание", "Головоломка", "Файтинг", "MOBA",
-  "Песочница", "Вечеринка"
+/* Каталог игр: название, Steam App ID, год, жанр, описание, оценка */
+const games = [
+{id:271590,title:"Grand Theft Auto V",year:2015,genre:"Экшен",rating:9.5,desc:"Открытый мир Лос-Сантоса, криминальные истории, задания и свобода исследования."},
+{id:1174180,title:"Red Dead Redemption 2",year:2019,genre:"Приключения",rating:9.8,desc:"Большое приключение на Диком Западе с сильным сюжетом и живым открытым миром."},
+{id:1091500,title:"Cyberpunk 2077",year:2020,genre:"RPG",rating:9.2,desc:"Исследуй Найт-Сити, выполняй задания и развивай своего героя в футуристическом мегаполисе."},
+{id:292030,title:"The Witcher 3: Wild Hunt",year:2015,genre:"RPG",rating:9.7,desc:"Стань Геральтом из Ривии и отправься на поиски близких в огромном фэнтезийном мире."},
+{id:1245620,title:"Elden Ring",year:2022,genre:"RPG",rating:9.6,desc:"Исследуй Междуземье, сражайся с сильными противниками и открывай секреты мира."},
+{id:990080,title:"Hogwarts Legacy",year:2023,genre:"Приключения",rating:8.8,desc:"Поступи в школу магии, изучай заклинания и исследуй волшебный мир."},
+{id:1086940,title:"Baldur's Gate 3",year:2023,genre:"RPG",rating:9.8,desc:"Ролевая игра с выбором решений, тактическими боями и приключениями в фэнтезийном мире."},
+{id:412020,title:"Metro Exodus",year:2019,genre:"Шутер",rating:9.0,desc:"Покинь московское метро и путешествуй по опасным территориям постапокалиптической России."},
+{id:668580,title:"Atomic Heart",year:2023,genre:"Шутер",rating:8.2,desc:"Фантастический шутер в альтернативном мире с роботами, загадками и необычным оружием."},
+{id:782330,title:"DOOM Eternal",year:2020,genre:"Шутер",rating:9.1,desc:"Быстрые сражения, мощное оружие и борьба с демонами в динамичном шутере."},
+{id:379720,title:"DOOM (2016)",year:2016,genre:"Шутер",rating:8.9,desc:"Классический стремительный экшен от первого лица на исследовательской базе Марса."},
+{id:730,title:"Counter-Strike 2",year:2023,genre:"Шутер",rating:9.0,desc:"Командный соревновательный шутер, где важны меткость, тактика и взаимодействие."},
+{id:578080,title:"PUBG: BATTLEGROUNDS",year:2017,genre:"Шутер",rating:8.3,desc:"Высаживайся на карту, собирай снаряжение и борись за победу в королевской битве."},
+{id:1172470,title:"Apex Legends",year:2019,genre:"Шутер",rating:8.7,desc:"Командная королевская битва с героями, уникальными способностями и быстрым движением."},
+{id:440,title:"Team Fortress 2",year:2007,genre:"Шутер",rating:8.8,desc:"Весёлый командный шутер с разными классами персонажей и необычным стилем."},
+{id:550,title:"Left 4 Dead 2",year:2009,genre:"Шутер",rating:9.4,desc:"Объединяйся с друзьями и пробивайся сквозь орды заражённых в кооперативной игре."},
+{id:2050650,title:"Resident Evil 4",year:2023,genre:"Хоррор",rating:9.3,desc:"Переживи опасную спасательную миссию в обновлённой версии знаменитого хоррора."},
+{id:1196590,title:"Resident Evil Village",year:2021,genre:"Хоррор",rating:8.9,desc:"Исследуй загадочную деревню, решай головоломки и выживай среди опасностей."},
+{id:883710,title:"Resident Evil 2",year:2019,genre:"Хоррор",rating:9.2,desc:"Попытайся выбраться из охваченного катастрофой Раккун-Сити."},
+{id:952060,title:"Resident Evil 3",year:2020,genre:"Хоррор",rating:8.1,desc:"Борись за выживание в городе, охваченном вспышкой опасной инфекции."},
+{id:238320,title:"Outlast",year:2013,genre:"Хоррор",rating:8.7,desc:"Исследуй заброшенную лечебницу, собирай информацию и старайся остаться незамеченным."},
+{id:739630,title:"Phasmophobia",year:2020,genre:"Хоррор",rating:8.8,desc:"Вместе с командой исследуй места с паранормальной активностью и собирай улики."},
+{id:1326470,title:"Sons Of The Forest",year:2024,genre:"Выживание",rating:8.6,desc:"Строй убежище, добывай ресурсы и исследуй опасный остров в одиночку или с друзьями."},
+{id:242760,title:"The Forest",year:2018,genre:"Выживание",rating:8.9,desc:"Выживай в лесу после авиакатастрофы, строй базу и изучай таинственный полуостров."},
+{id:264710,title:"Subnautica",year:2018,genre:"Выживание",rating:9.4,desc:"Исследуй подводную планету, создавай оборудование и раскрывай тайны океана."},
+{id:648800,title:"Raft",year:2022,genre:"Выживание",rating:8.7,desc:"Начни с маленького плота, собирай мусор, строй плавучий дом и исследуй океан."},
+{id:105600,title:"Terraria",year:2011,genre:"Песочница",rating:9.5,desc:"Копай, строй, исследуй огромный мир и сражайся с многочисленными боссами."},
+{id:413150,title:"Stardew Valley",year:2016,genre:"Симулятор",rating:9.6,desc:"Развивай ферму, выращивай урожай, знакомься с жителями и исследуй долину."},
+{id:892970,title:"Valheim",year:2021,genre:"Выживание",rating:9.0,desc:"Исследуй мир викингов, строй поселения и сражайся с мифическими противниками."},
+{id:252490,title:"Rust",year:2018,genre:"Выживание",rating:8.5,desc:"Собирай ресурсы, создавай снаряжение и защищай свою базу в суровом мире."},
+{id:346110,title:"ARK: Survival Evolved",year:2017,genre:"Выживание",rating:8.3,desc:"Выживай на загадочном острове, приручай динозавров и строй собственную базу."},
+{id:275850,title:"No Man's Sky",year:2016,genre:"Приключения",rating:8.9,desc:"Путешествуй по космосу, открывай планеты, собирай ресурсы и улучшай корабль."},
+{id:1172620,title:"Sea of Thieves",year:2018,genre:"Приключения",rating:8.8,desc:"Стань пиратом, ищи сокровища, управляй кораблём и отправляйся в морские приключения."},
+{id:1551360,title:"Forza Horizon 5",year:2021,genre:"Гонки",rating:9.4,desc:"Участвуй в гонках по красочным ландшафтам Мексики и собирай автомобили."},
+{id:1293830,title:"Forza Horizon 4",year:2018,genre:"Гонки",rating:9.2,desc:"Исследуй британские дороги, соревнуйся и наслаждайся сменой сезонов."},
+{id:1222680,title:"Need for Speed Heat",year:2019,genre:"Гонки",rating:8.4,desc:"Соревнуйся днём и ночью, настраивай машины и уходи от полицейских погонь."},
+{id:1846380,title:"Need for Speed Unbound",year:2022,genre:"Гонки",rating:8.1,desc:"Участвуй в уличных гонках, собирай автомобили и создавай свой стиль."},
+{id:244210,title:"Assetto Corsa",year:2014,genre:"Гонки",rating:9.1,desc:"Реалистичные автогонки, настройка машин и трассы для любителей симуляторов."},
+{id:227300,title:"Euro Truck Simulator 2",year:2012,genre:"Симулятор",rating:9.5,desc:"Перевози грузы по Европе, покупай грузовики и развивай транспортную компанию."},
+{id:284160,title:"BeamNG.drive",year:2015,genre:"Симулятор",rating:9.4,desc:"Исследуй автомобильную физику, испытывай машины и создавай собственные заезды."},
+{id:252950,title:"Rocket League",year:2015,genre:"Спорт",rating:9.0,desc:"Футбол на ракетных автомобилях: забивай голы, прыгай и играй с командой."},
+{id:1097150,title:"Fall Guys",year:2020,genre:"Вечеринка",rating:8.1,desc:"Проходи забавные полосы препятствий и соревнуйся с другими участниками."},
+{id:945360,title:"Among Us",year:2018,genre:"Вечеринка",rating:8.5,desc:"Выполняй задания на космическом корабле и выясни, кому из команды нельзя доверять."},
+{id:477160,title:"Human: Fall Flat",year:2016,genre:"Головоломка",rating:8.8,desc:"Решай физические головоломки, управляй забавным персонажем и играй с друзьями."},
+{id:285900,title:"Gang Beasts",year:2017,genre:"Вечеринка",rating:8.2,desc:"Участвуй в хаотичных драках забавных персонажей на опасных аренах."},
+{id:1426210,title:"It Takes Two",year:2021,genre:"Приключения",rating:9.5,desc:"Кооперативное приключение для двух игроков с совместными загадками и испытаниями."},
+{id:1222700,title:"A Way Out",year:2018,genre:"Приключения",rating:8.6,desc:"Два героя должны работать вместе, чтобы пройти историю о побеге и свободе."},
+{id:728880,title:"Overcooked! 2",year:2018,genre:"Вечеринка",rating:8.7,desc:"Готовь блюда в команде, координируй действия и справляйся с безумными кухнями."},
+{id:268910,title:"Cuphead",year:2017,genre:"Экшен",rating:9.0,desc:"Красочный мультяшный платформер с напряжёнными боями против боссов."},
+{id:367520,title:"Hollow Knight",year:2017,genre:"Приключения",rating:9.4,desc:"Исследуй подземное королевство, открывай способности и сражайся с сильными врагами."},
+{id:1145360,title:"Hades",year:2020,genre:"RPG",rating:9.5,desc:"Сражайся на пути из подземного мира, комбинируй способности и открывай историю героев."},
+{id:588650,title:"Dead Cells",year:2018,genre:"Экшен",rating:9.1,desc:"Динамичный экшен с процедурными уровнями, оружием и постоянно меняющимися испытаниями."},
+{id:1057090,title:"Ori and the Will of the Wisps",year:2020,genre:"Приключения",rating:9.4,desc:"Отправляйся в красивое приключение с платформенными испытаниями и загадками."},
+{id:504230,title:"Celeste",year:2018,genre:"Головоломка",rating:9.2,desc:"Преодолевай сложные платформенные уровни и помоги героине подняться на гору."},
+{id:480,title:"LIMBO",year:2011,genre:"Головоломка",rating:8.8,desc:"Мрачное приключение, где нужно решать физические загадки и находить путь вперёд."},
+{id:304430,title:"INSIDE",year:2016,genre:"Головоломка",rating:9.0,desc:"Атмосферная приключенческая игра с загадками, тайнами и необычным миром."},
+{id:620,title:"Portal 2",year:2011,genre:"Головоломка",rating:9.7,desc:"Решай пространственные головоломки с портальной пушкой и проверяй свою логику."},
+{id:220,title:"Half-Life 2",year:2004,genre:"Шутер",rating:9.6,desc:"Культовый научно-фантастический шутер с историей Гордона Фримена."},
+{id:8870,title:"BioShock Infinite",year:2013,genre:"Шутер",rating:9.1,desc:"Исследуй парящий город Колумбия и раскрой загадку необычного мира."},
+{id:205100,title:"Dishonored",year:2012,genre:"Экшен",rating:9.0,desc:"Проходи миссии скрытно или открыто, используй сверхъестественные способности."},
+{id:480490,title:"Prey",year:2017,genre:"Шутер",rating:8.9,desc:"Исследуй космическую станцию, находи способы выжить и раскрывай тайны эксперимента."},
+{id:489830,title:"The Elder Scrolls V: Skyrim Special Edition",year:2016,genre:"RPG",rating:9.4,desc:"Исследуй фэнтезийный мир, выполняй задания и создавай собственного героя."},
+{id:377160,title:"Fallout 4",year:2015,genre:"RPG",rating:9.0,desc:"Исследуй постапокалиптическую пустошь, собирай ресурсы и строй поселения."},
+{id:22380,title:"Fallout: New Vegas",year:2010,genre:"RPG",rating:9.3,desc:"Выбирай сторону в борьбе за пустыню Мохаве и влияй на судьбу региона."},
+{id:1328670,title:"Mass Effect Legendary Edition",year:2021,genre:"RPG",rating:9.4,desc:"Отправляйся в космическую сагу, собирай команду и принимай важные решения."},
+{id:582010,title:"Monster Hunter: World",year:2018,genre:"Экшен",rating:9.0,desc:"Выслеживай огромных монстров, создавай экипировку и охоться вместе с друзьями."},
+{id:374320,title:"Dark Souls III",year:2016,genre:"RPG",rating:9.2,desc:"Исследуй мрачное фэнтези, учись побеждать сильных врагов и открывай тайны мира."},
+{id:814380,title:"Sekiro: Shadows Die Twice",year:2019,genre:"Экшен",rating:9.3,desc:"Стань воином синоби и используй точные отражения атак в сложных сражениях."},
+{id:1627720,title:"Lies of P",year:2023,genre:"RPG",rating:8.7,desc:"Исследуй тёмный город, сражайся с механическими врагами и улучшай оружие."},
+{id:524220,title:"NieR:Automata",year:2017,genre:"RPG",rating:9.2,desc:"Фантастическая история об андроидах, машинах и будущем человечества."},
+{id:1687950,title:"Persona 5 Royal",year:2022,genre:"RPG",rating:9.5,desc:"Живи школьной жизнью и отправляйся в необычные пошаговые приключения."},
+{id:1462040,title:"FINAL FANTASY VII REMAKE INTERGRADE",year:2021,genre:"RPG",rating:8.9,desc:"Переосмысленная история Клауда с динамичными боями и кинематографическим сюжетом."},
+{id:289070,title:"Sid Meier's Civilization VI",year:2016,genre:"Стратегия",rating:9.0,desc:"Создай цивилизацию, развивай науку, культуру и армию, соперничая с другими лидерами."},
+{id:813780,title:"Age of Empires II: Definitive Edition",year:2019,genre:"Стратегия",rating:9.4,desc:"Развивай экономику, строй армию и веди исторические цивилизации к победе."},
+{id:1142710,title:"Total War: WARHAMMER III",year:2022,genre:"Стратегия",rating:8.7,desc:"Управляй фэнтезийной империей и веди масштабные армии в тактических сражениях."},
+{id:268500,title:"XCOM 2",year:2016,genre:"Стратегия",rating:9.0,desc:"Командуй отрядом сопротивления и освобождай Землю в пошаговых тактических боях."},
+{id:255710,title:"Cities: Skylines",year:2015,genre:"Симулятор",rating:9.1,desc:"Построй город мечты, развивай дороги, транспорт и городские службы."},
+{id:703080,title:"Planet Zoo",year:2019,genre:"Симулятор",rating:8.9,desc:"Создавай зоопарк, заботься о животных и проектируй удобные вольеры."},
+{id:1222670,title:"The Sims 4",year:2014,genre:"Симулятор",rating:8.4,desc:"Создавай персонажей, строй дома и управляй повседневной жизнью симов."},
+{id:1290000,title:"PowerWash Simulator",year:2022,genre:"Симулятор",rating:8.8,desc:"Очищай разные объекты от грязи и расслабляйся в необычном симуляторе."},
+{id:613100,title:"House Flipper",year:2018,genre:"Симулятор",rating:8.4,desc:"Покупай старые дома, ремонтируй помещения и превращай здания в красивые жилища."},
+{id:621060,title:"PC Building Simulator",year:2019,genre:"Симулятор",rating:8.6,desc:"Собирай виртуальные компьютеры, устанавливай компоненты и выполняй заказы клиентов."},
+{id:2300320,title:"Farming Simulator 25",year:2024,genre:"Симулятор",rating:8.5,desc:"Управляй фермой, выращивай культуры, работай на технике и развивай хозяйство."},
+{id:346900,title:"AdVenture Capitalist",year:2015,genre:"Стратегия",rating:7.8,desc:"Начни с небольшого бизнеса и постепенно строй огромную виртуальную империю."},
+{id:4000,title:"Garry's Mod",year:2006,genre:"Песочница",rating:9.3,desc:"Создавай собственные игровые ситуации, экспериментируй с физикой и играй на серверах."},
+{id:219150,title:"Hotline Miami",year:2012,genre:"Экшен",rating:8.9,desc:"Быстрый вид сверху, ретро-стиль и испытания, требующие реакции и планирования."},
+{id:250900,title:"The Binding of Isaac: Rebirth",year:2014,genre:"Экшен",rating:9.2,desc:"Проходи случайно создаваемые подземелья и открывай сотни предметов и комбинаций."},
+{id:391540,title:"Undertale",year:2015,genre:"RPG",rating:9.4,desc:"Необычная ролевая игра, где решения игрока меняют отношения с персонажами."},
+{id:391220,title:"Rise of the Tomb Raider",year:2016,genre:"Приключения",rating:8.8,desc:"Отправляйся в опасные экспедиции, исследуй гробницы и раскрывай древние секреты."},
+{id:750920,title:"Shadow of the Tomb Raider",year:2018,genre:"Приключения",rating:8.5,desc:"Помоги Ларе Крофт исследовать джунгли, решать загадки и остановить катастрофу."},
+{id:203160,title:"Tomb Raider",year:2013,genre:"Приключения",rating:9.0,desc:"История становления Лары Крофт: выживание, исследование и приключения на острове."},
+{id:1172380,title:"STAR WARS Jedi: Fallen Order",year:2019,genre:"Экшен",rating:8.8,desc:"Изучи Силу, сражайся световым мечом и путешествуй по далёкой галактике."},
+{id:1774580,title:"STAR WARS Jedi: Survivor",year:2023,genre:"Экшен",rating:8.7,desc:"Продолжи историю Кэла Кестиса в приключении с исследованием и динамичными боями."},
+{id:1063730,title:"New World: Aeternum",year:2021,genre:"RPG",rating:7.7,desc:"Исследуй фантастический остров, собирай ресурсы и развивай персонажа в приключении."},
+{id:236390,title:"War Thunder",year:2013,genre:"Симулятор",rating:8.3,desc:"Управляй военной авиацией, бронетехникой и кораблями в масштабных сражениях."},
+{id:444090,title:"Paladins",year:2018,genre:"Шутер",rating:8.0,desc:"Командный геройский шутер с персонажами, способностями и настройкой стиля игры."},
+{id:386360,title:"SMITE",year:2014,genre:"MOBA",rating:8.1,desc:"Сражайся на арене за мифологических богов в командной игре от третьего лица."},
+{id:570,title:"Dota 2",year:2013,genre:"MOBA",rating:9.0,desc:"Выбирай героя, взаимодействуй с командой и сражайся за разрушение вражеской базы."},
+{id:306130,title:"The Elder Scrolls Online",year:2014,genre:"RPG",rating:8.5,desc:"Исследуй Тамриэль вместе с другими игроками в большой многопользовательской RPG."},
+{id:1085660,title:"Destiny 2",year:2017,genre:"Шутер",rating:8.5,desc:"Исследуй космос, выполняй миссии и собирай экипировку в научно-фантастическом шутере."},
+{id:236850,title:"Europa Universalis IV",year:2013,genre:"Стратегия",rating:8.9,desc:"Управляй государством, веди дипломатию и меняй ход мировой истории."},
+{id:281990,title:"Stellaris",year:2016,genre:"Стратегия",rating:9.0,desc:"Исследуй галактику, встречай инопланетные цивилизации и строй космическую империю."},
+{id:526870,title:"Satisfactory",year:2024,genre:"Симулятор",rating:9.2,desc:"Строй масштабные заводы, автоматизируй производство и исследуй чужую планету."},
+{id:427520,title:"Factorio",year:2020,genre:"Стратегия",rating:9.6,desc:"Создавай автоматизированные фабрики, добывай ресурсы и оптимизируй производственные цепочки."},
+{id:1604030,title:"V Rising",year:2024,genre:"Выживание",rating:8.6,desc:"Стань вампиром, строй замок, собирай силы и исследуй тёмный открытый мир."},
+{id:108600,title:"Project Zomboid",year:2013,genre:"Выживание",rating:9.2,desc:"Попробуй выжить в открытом мире после зомби-апокалипсиса, собирая ресурсы и строя убежище."},
+{id:1966720,title:"Lethal Company",year:2023,genre:"Хоррор",rating:8.9,desc:"С командой собирай ценности на опасных лунах и выполняй задания компании."},
+{id:1962663,title:"Call of Duty: Warzone",year:2022,genre:"Шутер",rating:8.0,desc:"Сражайся за победу в масштабной королевской битве с огнестрельным оружием."},
+{id:1938090,title:"Call of Duty",year:2022,genre:"Шутер",rating:8.1,desc:"Динамичные сетевые сражения и современные военные операции в серии Call of Duty."},
+{id:1080110,title:"F1 2020",year:2020,genre:"Гонки",rating:8.9,desc:"Управляй болидом Формулы-1 и соревнуйся на знаменитых гоночных трассах."},
+{id:1145360,title:"Hades",year:2020,genre:"RPG",rating:9.5,desc:"Сражайся на пути из подземного мира, открывай способности и новых персонажей."},
+{id:632360,title:"Risk of Rain 2",year:2020,genre:"Экшен",rating:9.0,desc:"Сражайся с волнами врагов, собирай предметы и становись сильнее с каждым этапом."},
+{id:251570,title:"7 Days to Die",year:2013,genre:"Выживание",rating:8.3,desc:"Строй укрепления, исследуй мир и готовься защищаться от опасных ночных атак."},
+{id:227940,title:"Heroes & Generals",year:2016,genre:"Шутер",rating:7.4,desc:"Военная тематика, командные бои и историческое вооружение в сетевом шутере."},
+{id:3240220,title:"Grand Theft Auto V Enhanced",year:2025,genre:"Экшен",rating:9.0,desc:"Обновлённая версия открытого мира GTA V. Проверь требования и совместимость своего ПК."}
 ];
 
 const $ = id => document.getElementById(id);
-const pageSize = 24;
-let activeGenre = "Все";
-let favoritesOnly = false;
-let shown = 0;
+const genres = ["Экшен","Шутер","Приключения","RPG","Гонки","Хоррор","Стратегия","Симулятор","Выживание","Головоломка","Файтинг","MOBA","Песочница","Вечеринка","Спорт"];
+const state = {mode:"all",limit:24};
 let favorites = new Set();
+let userRatings = {};
 
 try {
-  const stored = JSON.parse(localStorage.getItem("gameverse-favorites") || "[]");
-  if (Array.isArray(stored)) favorites = new Set(stored.map(String));
-} catch (error) {
-  favorites = new Set();
+  favorites = new Set(JSON.parse(localStorage.getItem("gameverse-favorites") || "[]"));
+  userRatings = JSON.parse(localStorage.getItem("gameverse-ratings") || "{}");
+} catch(e) {}
+
+$("yearNow").textContent = new Date().getFullYear();
+$("gameStat").textContent = games.length + "+";
+
+genres.forEach(g => {
+  const option = document.createElement("option");
+  option.value = g;
+  option.textContent = g;
+  $("genre").appendChild(option);
+});
+
+function saveFavorites(){
+  try { localStorage.setItem("gameverse-favorites",JSON.stringify([...favorites])); }
+  catch(e) { showToast("Браузер не разрешил сохранить избранное."); }
 }
-
-function escapeHTML(value) {
-  return String(value).replace(/[&<>"']/g, char => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;"
-  })[char]);
+function showToast(message){
+  const t=$("toast");
+  t.textContent=message;
+  t.style.display="block";
+  clearTimeout(showToast.timer);
+  showToast.timer=setTimeout(()=>t.style.display="none",2400);
 }
-
-function saveFavorites() {
-  try {
-    localStorage.setItem(
-      "gameverse-favorites",
-      JSON.stringify([...favorites])
-    );
-  } catch (error) {
-    console.warn("Не удалось сохранить избранное", error);
-  }
-}
-
-function drawGenres() {
-  $("genres").innerHTML = genres.map(genre => `
-    <button
-      type="button"
-      class="${genre === activeGenre ? "active" : ""}"
-      data-genre="${escapeHTML(genre)}"
-      aria-pressed="${genre === activeGenre}"
-    >${escapeHTML(genre)}</button>
-  `).join("");
-}
-
-function getList() {
-  const query = $("search").value.trim().toLocaleLowerCase("ru");
-
-  const list = games.filter(game => {
-    const matchesGenre =
-      activeGenre === "Все" || game.genre === activeGenre;
-
-    const searchable = [
-      game.name, game.genre, game.description, String(game.year)
-    ].join(" ").toLocaleLowerCase("ru");
-
-    return matchesGenre &&
-      searchable.includes(query) &&
-      (!favoritesOnly || favorites.has(String(game.id)));
+function getGames(){
+  let list=games.filter(g=>{
+    const q=$("search").value.trim().toLowerCase();
+    const genre=$("genre").value;
+    const matches=!q || (g.title+" "+g.genre+" "+g.desc+" "+g.year).toLowerCase().includes(q);
+    const genreMatches=genre==="Все"||g.genre===genre;
+    const modeMatches=state.mode==="favorites"?favorites.has(g.id):
+      state.mode==="popular"?g.rating>=9.0:
+      state.mode==="new"?g.year>=2023:true;
+    return matches&&genreMatches&&modeMatches;
   });
-
-  const sort = $("sort").value;
-
-  if (sort === "az") {
-    list.sort((a, b) => a.name.localeCompare(b.name, "ru"));
-  }
-  if (sort === "za") {
-    list.sort((a, b) => b.name.localeCompare(a.name, "ru"));
-  }
-  if (sort === "new") {
-    list.sort((a, b) => b.year - a.year);
-  }
-  if (sort === "old") {
-    list.sort((a, b) => a.year - b.year);
-  }
-
+  const sort=$("sort").value;
+  if(sort==="az") list.sort((a,b)=>a.title.localeCompare(b.title,"ru"));
+  if(sort==="year") list.sort((a,b)=>b.year-a.year);
+  if(sort==="old") list.sort((a,b)=>a.year-b.year);
+  if(sort==="rating") list.sort((a,b)=>b.rating-a.rating);
   return list;
 }
-
-function fallback(title) {
+function cardHTML(g){
+  const fav=favorites.has(g.id);
+  const rating=userRatings[g.id];
+  const shownRating=rating||g.rating;
   return `
-    <div class="cover-fallback">
-      <strong>🎮 GAMEVERSE</strong>
-      <span>${escapeHTML(title)}</span>
+  <article class="card">
+    <div class="cover-wrap">
+      <img class="cover" loading="lazy"
+        src="https://cdn.cloudflare.steamstatic.com/steam/apps/${g.id}/header.jpg"
+        alt="${g.title.replace(/&/g,"&amp;").replace(/"/g,"&quot;")}"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="cover-fallback" style="display:none">${g.title}</div>
+      <button class="fav ${fav?'on':''}" data-fav="${g.id}"
+        aria-label="${fav?'Убрать из избранного':'Добавить в избранное'}"
+        title="${fav?'Убрать из избранного':'В избранное'}">${fav?'★':'☆'}</button>
     </div>
-  `;
-}
-
-function render() {
-  const grid = $("grid");
-  const list = getList();
-
-  shown = Math.min(shown, list.length);
-  const items = list.slice(shown, shown + pageSize);
-
-  grid.innerHTML = items.map(game => {
-    const id = String(game.id);
-    const image =
-      `https://cdn.cloudflare.steamstatic.com/steam/apps/${game.id}/header.jpg`;
-    const url = `https://store.steampowered.com/app/${game.id}/`;
-    const isFavorite = favorites.has(id);
-
-    return `
-      <article class="card">
-        <div class="cover-wrap">
-          <img
-            class="cover"
-            src="${image}"
-            alt="${escapeHTML(game.name)}"
-            loading="lazy"
-          >
-          <span class="cover-tag">GAMEVERSE</span>
-        </div>
-        <div class="card-body">
-          <h3>${escapeHTML(game.name)}</h3>
-          <span class="tag">${escapeHTML(game.genre)}</span>
-          <p class="description">${escapeHTML(game.description)}</p>
-          <div class="details">
-            <span>📅 ${game.year}</span>
-            <span>PC · Steam</span>
-          </div>
-          <div class="card-actions">
-            <a
-              class="details-link"
-              href="${url}"
-              target="_blank"
-              rel="noopener noreferrer"
-            >Подробнее ↗</a>
-            <button
-              type="button"
-              class="fav ${isFavorite ? "active" : ""}"
-              data-fav="${id}"
-              aria-label="${isFavorite ? "Убрать из" : "Добавить в"} избранное: ${escapeHTML(game.name)}"
-              aria-pressed="${isFavorite}"
-              title="Избранное"
-            >${isFavorite ? "♥" : "♡"}</button>
-          </div>
-        </div>
-      </article>
-    `;
-  }).join("");
-
-  grid.querySelectorAll("img.cover").forEach(img => {
-    img.addEventListener("error", () => {
-      const wrap = img.parentElement;
-      img.remove();
-      wrap.insertAdjacentHTML("afterbegin", fallback(img.alt || "Игра"));
-    }, { once: true });
-  });
-
-  if (list.length === 0) {
-    grid.innerHTML = `
-      <div class="empty">
-        <h3>Ничего не найдено 😕</h3>
-        <p>Попробуй другое название или выбери другой жанр.</p>
-        <button class="blue-btn" id="emptyReset">Сбросить фильтры</button>
+    <div class="card-body">
+      <h3>${g.title}</h3>
+      <div class="meta"><span>${g.year}</span><span class="genre">${g.genre}</span></div>
+      <p class="desc">${g.desc}</p>
+      <div class="card-bottom">
+        <span class="rating" title="Оценка каталога">★ ${shownRating.toFixed(1)}</span>
+        <a class="steam-link" href="https://store.steampowered.com/app/${g.id}/"
+          target="_blank" rel="noopener noreferrer">Страница игры ↗</a>
       </div>
-    `;
-  }
-
-  $("summary").textContent =
-    `Найдено игр: ${list.length} · Показано: ${Math.min(shown + items.length, list.length)} · В каталоге: ${games.length}`;
-
-  $("more").hidden = shown + items.length >= list.length;
+      <div style="display:flex;align-items:center;gap:8px;margin-top:13px;font-size:12px;color:var(--muted)">
+        Твоя оценка:
+        <select data-rate="${g.id}" aria-label="Оценить ${g.title}"
+          style="background:#213644;color:white;border:1px solid #405665;padding:5px;border-radius:4px">
+          <option value="">—</option>
+          ${[1,2,3,4,5,6,7,8,9,10].map(n=>`<option value="${n}" ${rating===n?'selected':''}>${n}/10</option>`).join("")}
+        </select>
+      </div>
+    </div>
+  </article>`;
 }
-
-$("genres").addEventListener("click", event => {
-  const button = event.target.closest("[data-genre]");
-  if (!button) return;
-
-  activeGenre = button.dataset.genre;
-  shown = 0;
-  drawGenres();
-  render();
-});
-
-$("grid").addEventListener("click", event => {
-  if (event.target.closest("#emptyReset")) {
-    resetFilters();
+function render(resetLimit=true){
+  if(resetLimit) state.limit=24;
+  const list=getGames();
+  $("resultCount").textContent=`Найдено: ${list.length} игр`;
+  $("grid").innerHTML=list.length
+    ?list.slice(0,state.limit).map(cardHTML).join("")
+    :`<div class="empty">😕 Ничего не найдено.<br><br>Попробуй изменить поиск или жанр.<br><br><button class="btn secondary" id="emptyReset">Сбросить фильтры</button></div>`;
+  $("moreBtn").style.display=list.length>state.limit?"inline-flex":"none";
+  document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.mode===state.mode));
+}
+$("grid").addEventListener("click",e=>{
+  const favButton=e.target.closest("[data-fav]");
+  if(favButton){
+    const id=Number(favButton.dataset.fav);
+    if(favorites.has(id)){favorites.delete(id);showToast("Удалено из избранного");}
+    else{favorites.add(id);showToast("Добавлено в избранное ⭐");}
+    saveFavorites();
+    render(false);
     return;
   }
-
-  const button = event.target.closest("[data-fav]");
-  if (!button) return;
-
-  const id = button.dataset.fav;
-  if (favorites.has(id)) favorites.delete(id);
-  else favorites.add(id);
-
-  saveFavorites();
-  render();
-});
-
-$("search").addEventListener("input", () => {
-  shown = 0;
-  render();
-});
-
-$("sort").addEventListener("change", () => {
-  shown = 0;
-  render();
-});
-
-$("more").addEventListener("click", () => {
-  shown += pageSize;
-  render();
-});
-
-$("favFilter").addEventListener("click", () => {
-  favoritesOnly = !favoritesOnly;
-  shown = 0;
-  $("favFilter").textContent =
-    favoritesOnly ? "♥ Все игры" : "♥ Избранное";
-  render();
-});
-
-function resetFilters() {
-  activeGenre = "Все";
-  favoritesOnly = false;
-  shown = 0;
-  $("search").value = "";
-  $("sort").value = "default";
-  $("favFilter").textContent = "♥ Избранное";
-  drawGenres();
-  render();
-}
-
-$("reset").addEventListener("click", resetFilters);
-
-$("random").addEventListener("click", () => {
-  const list = getList();
-  if (!list.length) {
-    $("summary").textContent = "Нет игр для выбора. Измени фильтры.";
-    return;
+  if(e.target.closest("#emptyReset")){
+    $("search").value="";
+    $("genre").value="Все";
+    state.mode="all";
+    render();
   }
-
-  const game = list[Math.floor(Math.random() * list.length)];
-  $("search").value = game.name;
-  activeGenre = "Все";
-  favoritesOnly = false;
-  $("sort").value = "default";
-  $("favFilter").textContent = "♥ Избранное";
-  shown = 0;
-  drawGenres();
-  render();
-
-  window.scrollTo({
-    top: $("grid").getBoundingClientRect().top + window.scrollY - 20,
-    behavior: "smooth"
-  });
 });
-
-drawGenres();
+$("grid").addEventListener("change",e=>{
+  const select=e.target.closest("[data-rate]");
+  if(!select)return;
+  const id=select.dataset.rate;
+  if(select.value==="") delete userRatings[id];
+  else userRatings[id]=Number(select.value);
+  try{localStorage.setItem("gameverse-ratings",JSON.stringify(userRatings));}
+  catch(e){showToast("Оценка действует только до закрытия браузера.");}
+  render(false);
+  showToast("Твоя оценка сохранена ⭐");
+});
+$("tabs").addEventListener("click",e=>{
+  const button=e.target.closest("[data-mode]");
+  if(!button)return;
+  state.mode=button.dataset.mode;
+  render();
+  $("catalog").scrollIntoView({behavior:"smooth",block:"start"});
+});
+$("search").addEventListener("input",()=>render());
+$("genre").addEventListener("change",()=>render());
+$("sort").addEventListener("change",()=>render());
+$("moreBtn").addEventListener("click",()=>{state.limit+=24;render(false);});
+$("randomBtn").addEventListener("click",()=>{
+  const list=getGames();
+  if(!list.length){showToast("Нет игр для выбора. Измени фильтры.");return;}
+  const game=list[Math.floor(Math.random()*list.length)];
+  showToast("🎲 Тебе выпала игра: "+game.title);
+  const card=[...document.querySelectorAll(".card h3")].find(h=>h.textContent===game.title);
+  if(card)card.closest(".card").scrollIntoView({behavior:"smooth",block:"center"});
+  else{
+    $("search").value=game.title;
+    $("genre").value="Все";
+    state.mode="all";
+    render();
+  }
+});
+$("favNav").addEventListener("click",()=>{
+  state.mode="favorites";
+  render();
+});
 render();
 </script>
 </body>
